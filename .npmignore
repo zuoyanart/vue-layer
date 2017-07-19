@@ -1,0 +1,12 @@
+node_modules
+*.json.gizp
+tmp
+temp
+/build/
+/config/
+/demo/
+/temp/
+/src/
+index.js
+utils.js
+webpack.config.js
