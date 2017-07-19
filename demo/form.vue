@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-form ref="form" :model="form" label-width="80px">
+  <el-form ref="form" :model="form" label-width="80px" style="height:1000px;">
 <el-form-item label="活动名称">
   <el-input v-model="form.name"></el-input>
 </el-form-item>
@@ -64,6 +64,10 @@ export default {
   methods: {
     onSubmit() {
       console.log('submit!');
+      // alert(JSON.stringify(this.form));
+      console.log(this.parent);
+      console.log(this.$parent);
+      this.$parent.$emit('asd', 'kkk');
     }
   }
 }

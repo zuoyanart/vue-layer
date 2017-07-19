@@ -43,6 +43,11 @@ export default {
   components: {
     'base-form': formComp,
   },
+  mounted() {
+    this.$on('asd', function (val) {
+      alert(val);
+    });
+  },
   methods: {
     submitHandle: function () {
       let id = this.$layer.alert("this is demo!!!");
@@ -114,7 +119,10 @@ export default {
     pageHandle: function () {
       let id = this.$layer.open({
         type: 2,
-        content: formComp,
+        content: {
+          content: formComp,
+          parent: this
+        },
         // content: 'http://www.baidu.com',
         area: ['800px', '400px']
       });

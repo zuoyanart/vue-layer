@@ -1,21 +1,14 @@
-
-
 <template lang="html">
 <div class="notify" @mousemove="move" @mouseup="moveEnd">
     <div class="notify-mask" @click="close"></div>
     <div :id="options.id + '_alert'" class="notify-main notify-alert notify-iframe"  :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],width:options.area[0], height:options.area[1]}">
         <h2 class="notice-title" @mousedown="moveStart">{{options.title}}</h2>
-        <div class="notify-content" v-html="getContent"></div>
-        <!-- <div class="notify-btns">
-            <pzbutton btn="primary" @click.native="btnyes" size="small">确定</pzbutton>
-            <pzbutton btn="default" @click.native="btncancel" size="small" v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'">取消</pzbutton>
-        </div> -->
+        <div class="notify-content"  id="xxxxxx"></div>
     </div>
 </div>
 </template>
 
 <script>
-import pzbutton from 'pzvue-button';
 export default {
   data() {
     return {
@@ -46,17 +39,26 @@ export default {
     }
   },
   computed: {
-    getContent() {
-      return `<iframe src="${this.options.content}" seamless="seamless" scrolling="auto" frameborder="0" style="height:${parseInt(this.options.area[1]) -50}px"></iframe>`;
-    }
+
   },
-  mounted() {},
+  mounted() {
+    this.getContent();
+  },
   methods: {
+    async getContent() {
+      await this.sleep(10);
+      let instance = new this.options.content.content({
+        parent: this.options.content.parent
+      });
+      instance.vm = instance.$mount();
+      document.getElementById('xxxxxx').appendChild(instance.vm.$el);
+    },
+    sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
     'close': function (event) {
       let mask = event.target.getAttribute("class");
       if (mask && mask.indexOf("notify-mask") > -1) {
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
         this.options.layer.close(this.options.id);
       }
     },
@@ -65,8 +67,6 @@ export default {
         console.log("asdasd");
         this.options.yes();
       } else {
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
         this.options.layer.close(this.options.id);
       }
     },
@@ -74,8 +74,6 @@ export default {
       if (typeof (this.options.cancel) == "function") {
         this.options.cancel();
       } else {
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
         this.options.layer.close(this.options.id);
       }
     },
@@ -106,11 +104,5 @@ export default {
       this.ismove = false;
     }
   },
-  watch: {
-
-  },
-  components: {
-    pzbutton,
-  }
 }
 </script>

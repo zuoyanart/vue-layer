@@ -33,6 +33,9 @@ let Notification = (function(vue) {
     let instance = new NotificationConstructor({
       data: options
     });
+    if (options.type == 2) {
+      options.content.content = vue.extend(options.content.content);
+    }
     instance.id = id;
     instance.vm = instance.$mount();
     self.instances[id] = {
