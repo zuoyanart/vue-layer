@@ -1,1 +1,1 @@
-module.exports = require('./src/notification.js');
+module.exports = require('./src/layer.js');

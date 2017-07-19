@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "vue layer component",
   "main": "./dist/vue-layer.js",
   "scripts": {
@@ -8,10 +8,11 @@
     "dev": "node build/dev-server.js"
   },
   "dependencies": {
+    "element-ui": "^1.3.7",
     "vue": "^2.0.0"
   },
   "devDependencies": {
-    "pzvue-button": "^0.6.10",
+    "pzvue-button": "*",
     "superagent": "^3.5.1",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -27,9 +28,7 @@
     "http-proxy-middleware": "^0.17.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "node-sass": "^4.1.0",
     "opn": "^4.0.2",
-    "sass-loader": "^4.1.0",
     "vue-hot-reload-api": "^2.0.5",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^8.5.3",
@@ -41,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zuoyanart/vue.git"
+    "url": "git+https://github.com/zuoyanart/vue-layer.git"
   },
   "keywords": [
     "vue",
@@ -51,7 +50,7 @@
   "author": "zuoyan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zuoyanart/vue/issues"
+    "url": "https://github.com/zuoyanart/vue-layer/issues"
   },
   "homepage": "http://vue.zuoyan.space/"
 }
