@@ -84,12 +84,6 @@ export default {
       setTimeout(function () {
         self.$layer.close(id);
       }, 1000);
-      let id1 = this.$layer.loading(2, {
-        time: 5
-      });
-      setTimeout(function () {
-        self.$layer.close(id1);
-      }, 2000);
     },
     loading2Handle: function () {
       let id = this.$layer.loading(2, {
@@ -126,7 +120,6 @@ export default {
             check: 'aaaaaaaaxxxx'
           }
         },
-        // content: 'http://www.baidu.com',
         area: ['800px', '400px']
       });
     },

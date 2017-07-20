@@ -16,6 +16,8 @@
 
 <script>
 import pzbutton from 'pzvue-button';
+import helper from './helper/helper.js';
+
 export default {
   data() {
     return {
@@ -28,83 +30,36 @@ export default {
     options: {
       type: Object,
       default: function () {
-        return {
-          id: '',
-          type: 0, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-          title: '信息',
-          content: '',
-          area: 'auto',
-          offset: 'auto',
-          icon: -1,
-          btn: '确定',
-          time: 0,
-          shade: true,
-          yes: '',
-          cancel: ''
-        }
+        return {}
       }
     }
   },
-  computed: {},
-  mounted() {},
   methods: {
-    'close': function (event) {
-      let mask = event.target.getAttribute("class");
-      if (mask && (mask.indexOf("notify-mask") > -1 || mask.indexOf("icon-remove") > -1)) {
-        console.log(this.options);
-        // delete this.options.layer.instances[this.options.id];
-        this.options.layer.close(this.options.id);
-        // document.getElementById(this.options.id).remove();
-      }
+    close(event) {
+      helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
     },
-    'btnyes': function (event) {
-      if (typeof (this.options.yes) == "function") {
-        console.log("asdasd");
-        this.options.yes();
-      } else {
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
-        this.options.layer.close(this.options.id);
-      }
+    btnyes(event) {
+      helper.btnyes(event, this.options);
     },
-    'btncancel': function (event) {
-      if (typeof (this.options.cancel) == "function") {
-        this.options.cancel();
-      } else {
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
-        this.options.layer.close(this.options.id);
-      }
+    btncancel(event) {
+      helper.btncancel(event, this.options);
     },
-    'moveStart': function (event) {
-      this.options.offset = this.options.offset == 'auto' ? [] : this.options.offset;
-      if (this.options.offset.length == 0) {
-        this.options.offset.push(document.getElementById(this.options.id + "_alert").offsetLeft);
-        this.options.offset.push(document.getElementById(this.options.id + "_alert").offsetTop);
-        this.options.offset.push(0);
-      }
-      if (this.options.offset.length == 2) {
-        this.options.offset.push(0);
-      }
-      this.options.offset[0] = (document.getElementById(this.options.id + "_alert").offsetLeft);
-      this.options.offset[1] = (document.getElementById(this.options.id + "_alert").offsetTop);
+    moveStart(event) {
+      helper.moveStart(event, this.options);
       this.moveLeft = event.clientX;
       this.moveTop = event.clientY;
       this.ismove = true;
     },
-    'move': function (event) {
+    move(event) {
       if (this.ismove) {
         let o = document.getElementById(this.options.id + "_alert");
         o.style.left = this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
         o.style.top = this.options.offset[1] + (event.clientY - this.moveTop) + "px";
       }
     },
-    'moveEnd': function (event) {
+    moveEnd(event) {
       this.ismove = false;
     }
-  },
-  watch: {
-
   },
   components: {
     pzbutton,

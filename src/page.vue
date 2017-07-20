@@ -28,20 +28,7 @@ export default {
     options: {
       type: Object,
       default: function () {
-        return {
-          id: '',
-          type: 0, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-          title: '信息',
-          content: '',
-          area: 'auto',
-          offset: 'auto',
-          icon: -1,
-          btn: '确定',
-          time: 0,
-          shade: true,
-          yes: '',
-          cancel: ''
-        }
+        return {}
       }
     }
   },
@@ -52,18 +39,13 @@ export default {
       let mask = event.target.getAttribute("class");
       if (mask && mask.indexOf("notify-mask") > -1) {
         this.options.layer.close(this.options.id);
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
       }
     },
     'btnyes': function (event) {
       if (typeof (this.options.yes) == "function") {
-        console.log("asdasd");
         this.options.yes();
       } else {
         this.options.layer.close(this.options.id);
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
       }
     },
     'btncancel': function (event) {
@@ -71,8 +53,6 @@ export default {
         this.options.cancel();
       } else {
         this.options.layer.close(this.options.id);
-        // delete this.$layer.instances[this.options.id];
-        // document.getElementById(this.options.id).remove();
       }
     },
     'moveStart': function (event) {

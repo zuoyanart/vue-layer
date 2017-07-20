@@ -76,6 +76,9 @@ export default {
       this.$parent.$emit('asd', 'kkk');
       alert(this.check);
     }
+  },
+  mounted() {
+    this.form.name = this.check;
   }
 }
 </script>
