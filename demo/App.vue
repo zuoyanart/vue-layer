@@ -111,6 +111,18 @@ export default {
       });
     },
     pageHandle: function () {
+      this.$layer.iframe({
+        content: {
+          content: formComp,
+          parent: this,
+          data: {
+            check: 'aaaaaaaaxxxx'
+          }
+        },
+        area: ['800px', '400px'],
+        title: 'asdasdad'
+      });
+      return;
       let id = this.$layer.open({
         type: 2,
         content: {
@@ -120,7 +132,8 @@ export default {
             check: 'aaaaaaaaxxxx'
           }
         },
-        area: ['800px', '400px']
+        area: ['800px', '400px'],
+        title: 'asdasd'
       });
     },
   }

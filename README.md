@@ -6,13 +6,13 @@ npm install vue-layer
 
 ## Quick Start
 
-with `main.js` or `index.js` add:
+在程序入口添加
 ```js
 import Vue from 'vue';
 import layer from 'vue-layer'
 Vue.prototype.$layer = layer(Vue);
 ```
-in component
+调用
 ```js
 this.$layer.alert("找不到对象！");
 ```
@@ -52,6 +52,16 @@ http://vue.zuoyan.space/#/component/layer
 ```
 ```js
 layer.tips(content, follow, options);
+```
+```js
+layer.iframe({
+  content: {
+    content: componentName, //传递的组件对象
+    parent: this,//当前的vue对象
+    data:[]//props
+  },
+  area:['800px','600px']
+});
 ```
 ```js
 layer.open(options);

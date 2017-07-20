@@ -166,6 +166,22 @@ let Notification = (function(vue) {
     return self.open(options);
   }
   /**
+   * [description]
+   * @param  {[type]} options [description]
+   * @return {[type]}         [description]
+   */
+  self.iframe = function(opt) {
+    let option = {
+      type: 2,
+      content: opt.content,
+      area: opt.area
+    };
+    option = mergeJson(option, opt);
+    console.log('option');
+    console.log(option);
+    return self.open(option);
+  }
+  /**
    * 关闭一个弹窗
    * @param  {[type]} id [description]
    * @return {[type]}    [description]

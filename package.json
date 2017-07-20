@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "0.7.3",
+  "version": "0.8.1",
   "description": "vue layer component",
   "main": "./dist/vue-layer.js",
   "scripts": {
@@ -8,11 +8,11 @@
     "dev": "node build/dev-server.js"
   },
   "dependencies": {
-    "element-ui": "^1.3.7",
-    "vue": "^2.0.0"
+    "pzvue-button": "*"
   },
   "devDependencies": {
-    "pzvue-button": "*",
+    "element-ui": "^1.3.7",
+    "vue": "^2.0.0",
     "superagent": "^3.5.1",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -45,6 +45,7 @@
   "keywords": [
     "vue",
     "layer",
+    "vue-layer",
     "zuoyan"
   ],
   "author": "zuoyan",
