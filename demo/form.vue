@@ -61,6 +61,12 @@ export default {
       }
     }
   },
+  props: {
+    check: {
+      type: String,
+      default: '111'
+    }
+  },
   methods: {
     onSubmit() {
       console.log('submit!');
@@ -68,6 +74,7 @@ export default {
       console.log(this.parent);
       console.log(this.$parent);
       this.$parent.$emit('asd', 'kkk');
+      alert(this.check);
     }
   }
 }

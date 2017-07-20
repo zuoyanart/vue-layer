@@ -3,7 +3,7 @@
     <div class="notify-mask" @click="close"></div>
     <div :id="options.id + '_alert'" class="notify-main notify-alert notify-iframe"  :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],width:options.area[0], height:options.area[1]}">
         <h2 class="notice-title" @mousedown="moveStart">{{options.title}}</h2>
-        <div class="notify-content"  id="xxxxxx"></div>
+        <div class="notify-content" :style="{height:(options.area[1]-50)}" :id="id"></div>
     </div>
 </div>
 </template>
@@ -14,7 +14,8 @@ export default {
     return {
       moveLeft: 0, //左移的距离
       moveTop: 0, //上移的距离
-      ismove: false
+      ismove: false,
+      id: 'vlip' + new Date().getTime(),
     }
   },
   props: {
@@ -47,11 +48,12 @@ export default {
   methods: {
     async getContent() {
       await this.sleep(10);
-      let instance = new this.options.content.content({
-        parent: this.options.content.parent
+      let instance = new this.options.content.content({ //具体参数信息，请参考vue源码
+        parent: this.options.content.parent,
+        propsData: this.options.content.data
       });
       instance.vm = instance.$mount();
-      document.getElementById('xxxxxx').appendChild(instance.vm.$el);
+      document.getElementById(this.id).appendChild(instance.vm.$el);
     },
     sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))

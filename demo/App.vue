@@ -121,7 +121,10 @@ export default {
         type: 2,
         content: {
           content: formComp,
-          parent: this
+          parent: this,
+          data: {
+            check: 'aaaaaaaaxxxx'
+          }
         },
         // content: 'http://www.baidu.com',
         area: ['800px', '400px']
