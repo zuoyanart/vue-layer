@@ -177,8 +177,8 @@ let Notification = (function(vue) {
       area: opt.area
     };
     option = mergeJson(option, opt);
-    console.log('option');
-    console.log(option);
+    // console.log('option');
+    // console.log(option);
     return self.open(option);
   }
   /**
