@@ -54,11 +54,11 @@ export default {
     },
     confirmHandle: function () {
       let self = this;
-      let id = this.$layer.confirm("确定要删除吗？", {
-        title: "警告"
-      }, async function () {
+      let id = this.$layer.confirm("确定要删除吗？", async function () {
         console.log("执行了删除");
         self.$layer.close(id);
+      }, function () {
+        alert('取消');
       });
     },
     msgHandle: function () {

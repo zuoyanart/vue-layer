@@ -80,8 +80,8 @@ let Notification = (function(vue) {
   self.confirm = function(content, options, yes, cancel) {
     switch (typeof(options)) {
       case 'function':
-        yes = options;
         cancel = yes;
+        yes = options;
         options = {};
         break;
       case 'object':
