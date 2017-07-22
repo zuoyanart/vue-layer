@@ -47,7 +47,7 @@ export default {
       await helper.sleep(10);
       let instance = new this.options.content.content({ //具体参数信息，请参考vue源码
         parent: this.options.content.parent,
-        propsData: this.options.content.data
+        propsData: JSON.parse(JSON.stringify(this.options.content.data))
       });
       instance.vm = instance.$mount();
       document.getElementById(this.id).appendChild(instance.vm.$el);
