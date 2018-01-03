@@ -19,50 +19,50 @@ import pzbutton from 'pzvue-button';
 import helper from './helper/helper.js';
 
 export default {
-  data() {
-    return {
-      moveLeft: 0, //左移的距离
-      moveTop: 0, //上移的距离
-      ismove: false
+    data() {
+        return {
+            moveLeft: 0, //左移的距离
+            moveTop: 0, //上移的距离
+            ismove: false
+        }
+    },
+    props: {
+        options: {
+            type: Object,
+            default: function() {
+                return {}
+            }
+        }
+    },
+    methods: {
+        close(event) {
+            helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
+        },
+        btnyes(event) {
+            helper.btnyes(event, this.options);
+        },
+        btncancel(event) {
+            helper.btncancel(event, this.options);
+        },
+        moveStart(event) {
+            helper.moveStart(event, this.options);
+            this.moveLeft = event.clientX;
+            this.moveTop = event.clientY;
+            this.ismove = true;
+        },
+        move(event) {
+            if (this.ismove) {
+                let o = document.getElementById(this.options.id + "_alert");
+                o.style.left = this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
+                o.style.top = this.options.offset[1] + (event.clientY - this.moveTop) + "px";
+            }
+        },
+        moveEnd(event) {
+            this.ismove = false;
+        }
+    },
+    components: {
+        pzbutton,
     }
-  },
-  props: {
-    options: {
-      type: Object,
-      default: function () {
-        return {}
-      }
-    }
-  },
-  methods: {
-    close(event) {
-      helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
-    },
-    btnyes(event) {
-      helper.btnyes(event, this.options);
-    },
-    btncancel(event) {
-      helper.btncancel(event, this.options);
-    },
-    moveStart(event) {
-      helper.moveStart(event, this.options);
-      this.moveLeft = event.clientX;
-      this.moveTop = event.clientY;
-      this.ismove = true;
-    },
-    move(event) {
-      if (this.ismove) {
-        let o = document.getElementById(this.options.id + "_alert");
-        o.style.left = this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
-        o.style.top = this.options.offset[1] + (event.clientY - this.moveTop) + "px";
-      }
-    },
-    moveEnd(event) {
-      this.ismove = false;
-    }
-  },
-  components: {
-    pzbutton,
-  }
 }
 </script>
