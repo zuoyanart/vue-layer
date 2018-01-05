@@ -27,7 +27,7 @@ let Notification = (function(vue) {
      */
     self.open = function(options) {
         options = mergeJson(options, defOptions);
-        let id = `notification_${  seed++}`;
+        let id = `notification_${new Date().getTime()}_${  seed++}`;
         options.id = id;
         options.layer = self;
         let instance = new NotificationConstructor({

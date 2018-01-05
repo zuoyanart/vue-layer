@@ -1,0 +1,83 @@
+@import "var.less";
+@import "mixin.less"; //button按钮生成工厂
+
+.btn-css(@bgcolor: @btn-primary-bgcolor) {
+    color: @btn-color;
+    background-color: @bgcolor;
+    .border(darken(@bgcolor,5%));
+
+    &.hover,
+    &:hover {
+        color: #fff;
+        background-color: darken(@bgcolor, 8%);
+    }
+
+    &.active,
+    &:active {
+        color: #fff;
+        background-color: darken(@bgcolor, 8%);
+    }
+}
+//具体样式
+//---------------------------------------------
+
+.notify-btn {
+    position: relative;
+    display: inline-block;
+    padding: 6px 10px;
+    margin-bottom: 0;
+    font-size: @btn-font-size;
+    min-width: 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    border: 1px solid #dddee1;
+    border-radius: 4px;
+    outline: 0;
+    -webkit-appearance: none;
+
+    &.active,
+    &:active {
+        color: inherit;
+        // background-color: #f7f7f7;
+        background-color: darken(#f7f7f7, 8%);;
+    }
+}
+
+.btn-default {
+    .btn-css(#f7f7f7);
+    color: #000;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.notify-btn-primary {
+    .btn-css(@btn-primary-bgcolor);
+}
+
+.notify-btn-success {
+    .btn-css(@bgcolor-success);
+}
+
+.notify-btn-info {
+    .btn-css(@bgcolor-info);
+}
+
+.notify-btn-warning {
+    .btn-css(@bgcolor-warning);
+}
+
+.notify-btn-danger {
+    .btn-css(@bgcolor-danger);
+}
+
+.btn-small {
+    font-size: 12px;
+    min-width: 31px;
+    min-height: 14px;
+    padding: 6px 9px;
+}

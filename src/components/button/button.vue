@@ -1,12 +1,12 @@
-<style lang="scss">
- 
+<style lang="less" scoped>
+@import "./css/button.less";
 </style>
 
 <template lang="html">
 
-<button  v-on:click="clickon" :type="type" name="button" class="btn" :class="[
-    btn ? 'btn-' + btn : '',
-    size ? 'btn-' + size : '',
+<button  v-on:click="clickon" :type="type" name="button" class="notify-btn" :class="[
+    btn ? 'notify-btn-' + btn : '',
+    size ? 'notify-btn-' + size : '',
     {
       'disabled': disabled,
     }

@@ -2,9 +2,7 @@
 
 <template lang="html">
 
-<label class="notify-msg">
-    {{options.content}}
-</label>
+<label class="notify-msg" v-html="options.content"></label>
 
 </template>
 

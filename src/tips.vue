@@ -1,11 +1,7 @@
-
-
 <template lang="html">
-<label class="notify-tips" :class="[this.options.tips[1],'notify-tips-'+ this.options.tips[0]]">
-    {{options.content}}
-    <em></em>
-</label>
-
+    <label class="notify-tips" :class="[this.options.tips[1],'notify-tips-'+ this.options.tips[0]]" v-html="options.content">
+        <em></em>
+    </label>
 </template>
 
 <script>

@@ -37,7 +37,7 @@
     .notify-main {
         min-width: 250px;
         max-width: 500px;
-        min-height: 150px;
+        min-height: 100px;
         background-color: #fff;
         left: 50%;
         top: 50%;
@@ -47,6 +47,7 @@
         border: 1px solid #eee;
         box-shadow: 1px 1px 50px rgba(0,0,0,0.3);
         border-radius: 2px;
+        padding-bottom: 5px;
     }
 
     .notify-content {
@@ -125,7 +126,8 @@
     .notify-msg {
         min-width: 50px;
         display: inline;
-        height: 48px;
+        minheight: 40px;
+        font-size: 14px;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -150,7 +152,8 @@
         padding: 6px 12px;
         border-radius: 5px;
 
-        & > em {
+        &:after{
+            content: " ";
             border: 10px solid #303133;
             position: absolute;
             display: inline-block;
@@ -161,7 +164,7 @@
 
     .notify-tips-0 {
         //上
-        & > em {
+        &:after {
             border-top-color: transparent!important;
             border-right-color: transparent!important;
             border-bottom-color: transparent!important;
@@ -172,7 +175,7 @@
 
     .notify-tips-1 {
         //右
-        & > em {
+        &:after {
             border-top-color: transparent!important;
             border-left-color: transparent!important;
             border-right-color: transparent!important;
@@ -183,7 +186,7 @@
 
     .notify-tips-2 {
         //下
-        & > em {
+        &:after {
             border-top-color: transparent!important;
             border-left-color: transparent!important;
             border-bottom-color: transparent!important;
@@ -196,7 +199,7 @@
         //左
         max-width: 300px;
 
-        & > em {
+        &:after {
             border-top-color: transparent!important;
             border-left-color: transparent!important;
             border-right-color: transparent!important;

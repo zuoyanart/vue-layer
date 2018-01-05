@@ -17,18 +17,13 @@
     <el-button type="primary" @click="msg1Handle">带回调</el-button>
     <h2 class="title">loading</h2>
     <el-button type="primary" @click="loadingHandle">默认样式</el-button>
-    <el-button type="primary" @click="loading1Handle">第一种样式</el-button>
-    <el-button type="primary" @click="loading2Handle">第二种样式</el-button>
     <h2 class="title">tips</h2>
     <el-button type="primary" id="tips" @click="tipsHandle">上</el-button>
-    <el-button type="primary" id="tips1" @click="tips1Handle">右</el-button>
+    <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle">右</el-button>
     <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
     <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
     <h2 class="title">page</h2>
     <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
-    <el-button type="primary" id="tips1" @click="tips1Handle">右</el-button>
-    <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
-    <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
 </div>
 </template>
 
@@ -50,19 +45,21 @@ export default {
     },
     methods: {
         submitHandle: function() {
-            let id = this.$layer.alert("this is demo!!!");
+            let id = this.$layer.alert(
+                "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!"
+            );
         },
         confirmHandle: function() {
             let self = this;
-            let id = this.$layer.confirm("确定要删除吗？", async function() {
+            let id = this.$layer.confirm("确定要<br/>删除吗？", function() {
                 console.log("执行了删除");
                 self.$layer.close(id);
-            }, function() {
-                alert('取消');
             });
         },
         msgHandle: function() {
-            let id = this.$layer.msg("弱弱的提示");
+            let id = this.$layer.msg("弱弱的提示", {
+                time: 10000
+            });
         },
         msg1Handle: function() {
             let id = this.$layer.msg("5s后刷新页面", {
@@ -76,26 +73,13 @@ export default {
                 time: 2
             });
         },
-        loading1Handle: function() {
-            let self = this;
-            let id = this.$layer.loading(1, {
-                time: 20
-            });
-            setTimeout(function() {
-                self.$layer.close(id);
-            }, 3000);
-        },
-        loading2Handle: function() {
-            let id = this.$layer.loading(2, {
-                time: 2
-            });
-        },
         tipsHandle: function() {
             let id = this.$layer.tips("在很久很久以前", '#tips');
         },
         tips1Handle: function() {
             let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips1', {
-                tips: 1
+                tips: 1,
+                time: 10
             });
         },
         tips2Handle: function() {
@@ -107,33 +91,22 @@ export default {
             let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips3', {
                 tips: [3, {
                     "selfa": true
-                }]
+                }],
+                time: 10
             });
         },
         pageHandle: function() {
-            this.$layer.iframe({
+            let ids = this.$layer.iframe({
                 content: {
                     content: formComp,
                     parent: this,
                     data: {
-                        check: 'aaaaaaaaxxxx'
+                        check: 'aaaaaaaaxxxx',
+                        id: ids
                     }
                 },
-                area: ['800px', '400px'],
-                title: 'asdasdad'
-            });
-            return;
-            let id = this.$layer.open({
-                type: 2,
-                content: {
-                    content: formComp,
-                    parent: this,
-                    data: {
-                        check: 'aaaaaaaaxxxx'
-                    }
-                },
-                area: ['800px', '400px'],
-                title: 'asdasd'
+                area: ['800px', '500px'],
+                title: '个人信息'
             });
         },
     }
