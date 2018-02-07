@@ -68,8 +68,9 @@ export default {
         msg1Handle: function() {
             let id = this.$layer.msg("5s后刷新页面", {
                 time: 5
-            }, function() {
+            }, () => {
                 console.log('asd');
+                this.$layer.close(id);
             });
         },
         loadingHandle: function() {
