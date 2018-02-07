@@ -1,5 +1,5 @@
 <template lang="html">
-    <label class="notify-tips" :class="[this.options.tips[1],'notify-tips-'+ this.options.tips[0]]" v-html="options.content">
+    <label class="vl-notify-tips" :class="[this.options.tips[1],'vl-notify-tips-'+ this.options.tips[0]]" v-html="options.content">
         <em></em>
     </label>
 </template>

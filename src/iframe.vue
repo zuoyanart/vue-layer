@@ -1,9 +1,9 @@
 <template lang="html">
-<div class="notify" @mousemove="move" @mouseup="moveEnd">
-    <div class="notify-mask" @click="close"></div>
-    <div :id="options.id + '_alert'" class="notify-main notify-alert notify-iframe"  :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],width:options.area[0], height:options.area[1]}">
-        <h2 class="notice-title" @mousedown="moveStart">{{options.title}}</h2>
-        <div class="notify-content" :style="contentStyle" :id="id"></div>
+<div class="vl-notify" @mousemove="move" @mouseup="moveEnd">
+    <div class="vl-notify-mask" @click="close"></div>
+    <div :id="options.id + '_alert'" class="vl-notify-main vl-notify-alert vl-notify-iframe"  :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],width:options.area[0], height:options.area[1]}">
+        <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}</h2>
+        <div class="vl-notify-content" :style="contentStyle" :id="id"></div>
     </div>
 </div>
 </template>

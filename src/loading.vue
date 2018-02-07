@@ -1,7 +1,7 @@
 
 
 <template lang="html">
-    <label class="notify-loading">
+    <label class="vl-notify-loading">
          <span></span>
     </label>
 </template>

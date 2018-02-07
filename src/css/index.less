@@ -1,4 +1,10 @@
-.notify {
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.vl-notify {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -6,7 +12,7 @@
     top: 0;
     left: 0;
 
-    &.notify-msg-p {
+    &.vl-notify-msg-p {
         display: inline;
         height: 0;
         left: 50%;
@@ -16,7 +22,7 @@
         background-color: rgba(0,0,0,.6);
     }
 
-    &.notify-tips-p {
+    &.vl-notify-tips-p {
         display: inline;
         height: 0;
         top: 0;
@@ -24,7 +30,7 @@
         position: absolute;
     }
 
-    .notify-mask {
+    .vl-notify-mask {
         background-color: #000;
         opacity: 0.4;
         position: absolute;
@@ -34,7 +40,7 @@
         height: 100%;
     }
 
-    .notify-main {
+    .vl-notify-main {
         min-width: 250px;
         max-width: 500px;
         min-height: 100px;
@@ -50,7 +56,7 @@
         padding-bottom: 5px;
     }
 
-    .notify-content {
+    .vl-notify-content {
         min-height: 65px;
         padding: 20px;
 
@@ -62,13 +68,13 @@
         }
     }
 
-    .notify-btns {
+    .vl-notify-btns {
         text-align: right;
         padding: 0 8px 0 0;
     }
 
-    .notify-alert {
-        h2.notice-title {
+    .vl-notify-alert {
+        h2.vl-notice-title {
             width: 100%;
             height: 43px;
             line-height: 43px;
@@ -90,7 +96,7 @@
         }
     }
 
-    .notify-loading {
+    .vl-notify-loading {
         display: inline;
         position: absolute;
         left: 50%;
@@ -99,12 +105,12 @@
         -ms-transform: translate(-50%, -50%);
         width: 50px;
         height: 50px;
-
         @keyframes loading {
             from {
                 -webkit-transform: rotate(0deg);
                 transform: rotate(0deg);
             }
+
             to {
                 -webkit-transform: rotate(360deg);
                 transform: rotate(360deg);
@@ -123,7 +129,7 @@
         }
     }
 
-    .notify-msg {
+    .vl-notify-msg {
         min-width: 50px;
         display: inline;
         minheight: 40px;
@@ -140,7 +146,7 @@
         border-radius: 5px;
     }
 
-    .notify-tips {
+    .vl-notify-tips {
         min-width: 50px;
         max-width: 400px;
         display: inline;
@@ -152,17 +158,15 @@
         padding: 6px 12px;
         border-radius: 5px;
 
-        &:after{
+        &:after {
             content: " ";
             border: 10px solid #303133;
             position: absolute;
             display: inline-block;
-            width: 20px;
-            height: 20px;
         }
     }
 
-    .notify-tips-0 {
+    .vl-notify-tips-0 {
         //上
         &:after {
             border-top-color: transparent!important;
@@ -173,7 +177,7 @@
         }
     }
 
-    .notify-tips-1 {
+    .vl-notify-tips-1 {
         //右
         &:after {
             border-top-color: transparent!important;
@@ -184,7 +188,7 @@
         }
     }
 
-    .notify-tips-2 {
+    .vl-notify-tips-2 {
         //下
         &:after {
             border-top-color: transparent!important;
@@ -195,7 +199,7 @@
         }
     }
 
-    .notify-tips-3 {
+    .vl-notify-tips-3 {
         //左
         max-width: 300px;
 
@@ -208,11 +212,11 @@
         }
     }
 
-    .notify-iframe {
+    .vl-notify-iframe {
         //iframe
         max-width: 2000px;
 
-        .notify-content {
+        .vl-notify-content {
             padding: 0;
         }
     }

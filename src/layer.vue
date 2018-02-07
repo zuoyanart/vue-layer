@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="notify" :id="id" :class="{'notify-msg-p':isMsg, 'notify-tips-p': isTips}">
+  <div class="vl-notify" :id="id" :class="{'vl-notify-msg-p':isMsg, 'vl-notify-tips-p': isTips}">
     <pzalert :options="this.$data" v-if="this.$data.type==0"></pzalert>
     <pzpage :options="this.$data" v-if="this.$data.type==1"></pzpage>
     <pziframe :options="this.$data" v-if="this.$data.type==2"></pziframe>

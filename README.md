@@ -18,7 +18,7 @@ this.$layer.alert("找不到对象！");
 ```
 
 ## Demo
-http://vue.zuoyan.space/#/component/layer
+http://vue.zuoyanit.com/#/component/layer
 
 ## Attribut
 ```js
@@ -41,17 +41,26 @@ http://vue.zuoyan.space/#/component/layer
 ```
 ## Method
 ```js
- layer.alert(contetn, options, yes);
+ layer.alert(content, [options, yes]);
+ // options和yes可以省略， 如果您不愿意写options，则可以直接写确定按钮的函数，即yes
+ // content 可以为html
 ```
 
 ```js
- layer.confirm(content, options, yes, cancel)
+ layer.confirm(content, [options, yes, cancel]);
+  // options，yes和cancel可以省略， 如果您不愿意写options，则可以直接写确定按钮的函数，即yes，或者覆盖默认的cancel方法。PS：yes和cancel方法不能互换
+  //content 可以为html
 ```
 ```js
- layer.msg(contetn, options, end);
+ layer.msg(content, [options, end]);
+ // options和end可以省略， 如果您不愿意写options，则可以直接写时间到期的回调即可，即end方法
+ // 默认msg的关闭时间为1.5秒
+ // content 可以为html
 ```
 ```js
 layer.tips(content, follow, options);
+//content 可以为html
+//follow对css选择器，用来定位目标
 ```
 ```js
 layer.iframe({
@@ -60,8 +69,11 @@ layer.iframe({
     parent: this,//当前的vue对象
     data:[]//props
   },
-  area:['800px','600px']
+  area:['800px','600px'],
+  title: 'title'
 });
+// data参数可认为是componentName的props，同时 该方法会自动添加一个key为layerid的值， 该值为创建层的id， 可以直接用来关闭该层
+// options参数直接写到json里即可，比如title
 ```
 ```js
 layer.open(options);
@@ -88,7 +100,7 @@ layer.closeAll(type);
   此参数其实就是当前调用layer的vue对象， 即this即可。在editForm中可以直接使用， this.$parent来获取调用layer的vue对象，然后父子传值神马的，就很easy，当然也可以直接使用vuex，就不用this.$parent了
 
   ##### data:
-  此参数可认为是editForm的props，然后你懂得
+  此参数可认为是editForm的props，然后你懂得。 注： 该方法会自动添加一个key为layerid的值， 该值为创建层的id， 可以直接使用
 
 结果即为：
 ```js
@@ -106,3 +118,6 @@ methods:{
   }
 }
 ```
+
+### 样式调整
+该包的css都为vl-notice开头， 需要重写css样式，覆盖即可

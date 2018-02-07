@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "vue layer component",
   "main": "./dist/vue-layer.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js"
   },
   "dependencies": {
-    "pzvue-button": "*"
+
   },
   "devDependencies": {
     "element-ui": "^1.3.7",

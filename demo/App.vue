@@ -46,31 +46,35 @@ export default {
     methods: {
         submitHandle: function() {
             let id = this.$layer.alert(
-                "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!"
-            );
+                "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
+                function() {
+                    alert(1);
+                });
         },
         confirmHandle: function() {
             let self = this;
             let id = this.$layer.confirm("确定要<br/>删除吗？", function() {
                 console.log("执行了删除");
                 self.$layer.close(id);
+            }, function() {
+                console.log('执行了取消');
             });
         },
         msgHandle: function() {
             let id = this.$layer.msg("弱弱的提示", {
-                time: 10000
+                time: 1
             });
         },
         msg1Handle: function() {
             let id = this.$layer.msg("5s后刷新页面", {
                 time: 5
             }, function() {
-                document.location.reload();
+                console.log('asd');
             });
         },
         loadingHandle: function() {
             let id = this.$layer.loading({
-                time: 2
+                time: 5
             });
         },
         tipsHandle: function() {
@@ -79,7 +83,7 @@ export default {
         tips1Handle: function() {
             let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips1', {
                 tips: 1,
-                time: 10
+                time: 100
             });
         },
         tips2Handle: function() {
@@ -106,7 +110,7 @@ export default {
                     }
                 },
                 area: ['800px', '500px'],
-                title: '个人信息'
+                title: ''
             });
         },
     }
