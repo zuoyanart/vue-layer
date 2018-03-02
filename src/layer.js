@@ -1,4 +1,6 @@
-let Notification = (function(vue) {
+let Notification = (function(vue, globalOption = {
+    msgtime: 1.5, //msg消失时间
+}) {
     let NotificationConstructor = vue.extend(require('./layer.vue'));
     let self = {};
     const defOptions = {
@@ -20,14 +22,6 @@ let Notification = (function(vue) {
     self.instances = {};
     let seed = 0;
 
-    /**
-     * 重置全局变量
-     * @param  {Object} [options={}] [description]
-     * @return {[type]}              [description]
-     */
-    self.setConfig = function(options = {}) {
-        defOptions = mergeJson(defOptions, options);
-    }
     /**
      * [function description]
      * @method function
@@ -129,7 +123,7 @@ let Notification = (function(vue) {
         }
         end = typeof(end) === 'function' ? end : '';
         options.type = 5;
-        options.time = options.time ? options.time : 1.5;
+        options.time = options.time ? options.time : globalOption.msgtime;
         options.content = content || 'this is a msg!!';
         options.yes = end;
         self.closeAll('msg');

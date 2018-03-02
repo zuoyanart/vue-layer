@@ -61,9 +61,7 @@ export default {
             });
         },
         msgHandle: function() {
-            let id = this.$layer.msg("弱弱的提示", {
-                time: 1
-            });
+            let id = this.$layer.msg("弱弱的提示");
         },
         msg1Handle: function() {
             let id = this.$layer.msg("5s后刷新页面", {

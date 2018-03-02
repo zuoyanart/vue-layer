@@ -12,6 +12,14 @@ import Vue from 'vue';
 import layer from 'vue-layer'
 Vue.prototype.$layer = layer(Vue);
 ```
+全局参数重置
+```js
+import Vue from 'vue';
+import layer from 'vue-layer'
+Vue.prototype.$layer = layer(Vue, {
+    msgtime: 3,//目前只有一项，即msg方法的默认消失时间，单位：秒
+});
+```
 调用
 ```js
 this.$layer.alert("找不到对象！");

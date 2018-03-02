@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "vue layer component",
   "main": "./dist/vue-layer.js",
   "scripts": {
