@@ -19,6 +19,15 @@ let Notification = (function(vue) {
     };
     self.instances = {};
     let seed = 0;
+
+    /**
+     * 重置全局变量
+     * @param  {Object} [options={}] [description]
+     * @return {[type]}              [description]
+     */
+    self.setConfig = function(options = {}) {
+        defOptions = mergeJson(defOptions, options);
+    }
     /**
      * [function description]
      * @method function

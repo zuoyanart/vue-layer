@@ -17,9 +17,6 @@ Vue.prototype.$layer = layer(Vue);
 this.$layer.alert("找不到对象！");
 ```
 
-## Demo
-http://vue.zuoyanit.com/#/component/layer
-
 ## Attribut
 ```js
 {
