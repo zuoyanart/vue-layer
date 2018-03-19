@@ -3,7 +3,7 @@
  * @Date:   2018-03-05 16:12:17
  * @Email:  huabinglan@163.com
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-05 16:21:23
+ * @Last modified time: 2018-03-19 18:32:18
  */
 
 
@@ -12,6 +12,7 @@ let Notification = (function(vue, globalOption = {
   msgtime: 1.5, //msg消失时间
 }) {
   let NotificationConstructor = vue.extend(require('./layer.vue'));
+  let maskLayer = vue.extend(require('./mask.vue'));
   let self = {};
   const defOptions = {
     type: 0, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -55,8 +56,15 @@ let Notification = (function(vue, globalOption = {
     self.instances[id] = {
       inst: instance,
       type: options.type
-    }
+    };
     document.body.appendChild(instance.vm.$el);
+    if (options.shade) { //是否显示遮罩
+      let maskInstance = new maskLayer({
+        data: options
+      });
+      maskInstance.vm = maskInstance.$mount();
+      document.body.appendChild(maskInstance.vm.$el);
+    }
     return id;
   };
   /**
@@ -202,6 +210,8 @@ let Notification = (function(vue, globalOption = {
    */
   self.close = function(id) {
     let oElm = document.getElementById(id);
+    let layerMask = document.querySelector('.vl-notify-mask');
+    document.body.removeChild(layerMask);
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];

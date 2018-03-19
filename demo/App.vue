@@ -3,7 +3,7 @@
 @Date:   2018-03-05 16:18:21
 @Email:  huabinglan@163.com
 @Last modified by:   左盐
-@Last modified time: 2018-03-05 16:19:16
+@Last modified time: 2018-03-19 12:29:09
 -->
 
 
@@ -118,7 +118,8 @@ export default {
           }
         },
         area: ['800px', '500px'],
-        title: ''
+        title: '',
+        shade: false
       });
     },
   }
