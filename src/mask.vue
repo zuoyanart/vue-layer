@@ -4,10 +4,10 @@
 @Email:  huabinglan@163.com
 @Project: xxx
 @Last modified by:   左盐
-@Last modified time: 2018-03-19 18:31:46
+@Last modified time: 2018-03-23 18:22:57
 -->
 <template lang="html">
-      <div class="vl-notify-mask" @click="close" :id="id + 'asd'"></div>
+      <div class="vl-notify-mask" @click="close" :id="id + '_mask'"></div>
 </template>
 
 <script>
@@ -35,8 +35,7 @@ export default {
   },
   methods: {
     close(event) {
-      alert(this.options.id);
-      helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
+      helper.clickMaskCloseAll(event, this.layer, this.id);
     },
 
   },

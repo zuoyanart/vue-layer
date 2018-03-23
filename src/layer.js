@@ -3,7 +3,7 @@
  * @Date:   2018-03-05 16:12:17
  * @Email:  huabinglan@163.com
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-19 18:32:18
+ * @Last modified time: 2018-03-23 18:29:30
  */
 
 
@@ -58,6 +58,7 @@ let Notification = (function(vue, globalOption = {
       type: options.type
     };
     document.body.appendChild(instance.vm.$el);
+
     if (options.shade) { //是否显示遮罩
       let maskInstance = new maskLayer({
         data: options
@@ -211,7 +212,9 @@ let Notification = (function(vue, globalOption = {
   self.close = function(id) {
     let oElm = document.getElementById(id);
     let layerMask = document.querySelector('.vl-notify-mask');
-    document.body.removeChild(layerMask);
+    if (layerMask) {
+      document.body.removeChild(layerMask);
+    }
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];
