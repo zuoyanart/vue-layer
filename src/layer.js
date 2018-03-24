@@ -3,7 +3,7 @@
  * @Date:   2018-03-05 16:12:17
  * @Email:  huabinglan@163.com
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-23 18:29:30
+ * @Last modified time: 2018-03-24 15:54:35
  */
 
 
@@ -28,7 +28,7 @@ let Notification = (function(vue, globalOption = {
     cancel: '',
     tips: [0, {}], //支持上右下左四个方向，通过1-4进行方向设定,可以设定tips: [1, '#c00']
     tipsMore: false, //是否允许多个tips
-    shadeClose: false
+    shadeClose: true
   };
   self.instances = {};
   let seed = 0;
@@ -60,6 +60,10 @@ let Notification = (function(vue, globalOption = {
     document.body.appendChild(instance.vm.$el);
 
     if (options.shade) { //是否显示遮罩
+      // let layerMask = document.querySelector('.vl-notify-mask');
+      // if (layerMask) {
+      //   document.body.removeChild(layerMask);
+      // }
       let maskInstance = new maskLayer({
         data: options
       });
@@ -146,6 +150,9 @@ let Notification = (function(vue, globalOption = {
     options.time = options.time ? options.time : globalOption.msgtime;
     options.content = content || 'this is a msg!!';
     options.yes = end;
+    if (options.shade == undefined) {
+      options.shade = false;
+    }
     self.closeAll('msg');
     return self.open(options);
   }
@@ -164,6 +171,12 @@ let Notification = (function(vue, globalOption = {
       options.time = 100;
     }
     options.type = 3;
+    if (options.shade == undefined) {
+      options.shade = true;
+    }
+    if (options.shadeClose == undefined) {
+      options.shadeClose = false;
+    }
     return self.open(options);
   }
   /**
@@ -182,6 +195,9 @@ let Notification = (function(vue, globalOption = {
     options.tips = options.tips || [0, {}];
     if (typeof(options.tips) !== 'object') {
       options.tips = [options.tips, {}];
+    }
+    if (options.shade == undefined) {
+      options.shade = false;
     }
     if (!options.tipsMore) {
       self.closeAll('tips');

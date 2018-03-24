@@ -4,18 +4,16 @@
 @Email:  huabinglan@163.com
 @Project: xxx
 @Last modified by:   左盐
-@Last modified time: 2018-03-23 18:26:39
+@Last modified time: 2018-03-24 16:02:01
 -->
 <template lang="html">
-<div class="vl-notify vl-notify-main vl-notify-alert" @mousemove="move" @mouseup="moveEnd" :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2]}">
-    <!-- <div :id="options.id + '_alert'" class="vl-notify-main vl-notify-alert" v-if="options.type == 0" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2]}"> -->
-        <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}</h2>
+<div class="vl-notify vl-notify-main vl-notify-alert"  @mousemove="move" @mouseup="moveEnd"  :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2]}" style="max-width:500px;">
+        <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}<i class="icon-remove" @click="close"></i></h2>
         <div class="vl-notify-content" v-html="options.content"></div>
         <div class="vl-notify-btns">
             <pzbutton btn="primary" @click.native="btnyes" size="small">确定</pzbutton>
             <pzbutton btn="default" @click.native="btncancel" size="small" v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'">取消</pzbutton>
         </div>
-    <!-- </div> -->
 </div>
 </template>
 
@@ -64,6 +62,24 @@ export default {
     },
     moveEnd(event) {
       this.ismove = false;
+    }
+  },
+  async mounted() {
+    await helper.sleep(20);
+    if (this.options.shade) { //是否显示遮罩
+      document.getElementById(this.options.id + '_mask').addEventListener('mousemove', (event) => {
+        this.move(event);
+      });
+      document.getElementById(this.options.id + '_mask').addEventListener('mouseup', (event) => {
+        this.moveEnd(event);
+      });
+    } else {
+      document.addEventListener('mousemove', (event) => {
+        this.move(event);
+      });
+      document.addEventListener('mouseup', (event) => {
+        this.moveEnd(event);
+      });
     }
   },
   components: {

@@ -4,7 +4,7 @@
 @Email:  huabinglan@163.com
 @Project: xxx
 @Last modified by:   左盐
-@Last modified time: 2018-03-23 18:22:57
+@Last modified time: 2018-03-24 15:29:43
 -->
 <template lang="html">
       <div class="vl-notify-mask" @click="close" :id="id + '_mask'"></div>
@@ -35,7 +35,9 @@ export default {
   },
   methods: {
     close(event) {
-      helper.clickMaskCloseAll(event, this.layer, this.id);
+      if (this.shadeClose) {
+        helper.clickMaskCloseAll(event, this.layer, this.id);
+      }
     },
 
   },
@@ -44,9 +46,9 @@ export default {
 
 <style lang="css">
 .vl-notify-mask {
-    background-color: #000;
-    opacity: 0.4;
-    position: absolute;
+    background-color: #ccc;
+    opacity: 0.2;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

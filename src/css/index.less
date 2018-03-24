@@ -4,7 +4,7 @@
  * @Email:  huabinglan@163.com
  * @Project: xxx
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-23 18:31:34
+ * @Last modified time: 2018-03-24 15:59:18
  */
 *[class^="vl-notify"]{
     box-sizing: border-box;
@@ -13,7 +13,7 @@
 }
 
 .vl-notify {
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     left: 50%;
     top: 50%;
@@ -40,7 +40,7 @@
 
     &.vl-notify-main {
         min-width: 250px;
-        max-width: 500px;
+        max-width: 1500px;
         min-height: 100px;
         background-color: #fff;
         border: 1px solid #eee;
@@ -84,14 +84,21 @@
             .icon-remove {
                 position: absolute;
                 right: 10px;
-                font-size: 20px;
-                top: 10px;
+                font-size: 14px;
+                text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);
+                top: 0px;
+                font-weight: normal;
                 cursor: pointer;
+                color: #b3b3b3;
+                font-style: normal;
+                &::before {
+                  content: "\2716";
+              }
             }
         }
     }
 
-    .vl-notify-loading {
+    &.vl-notify-loading {
         display: inline;
         position: absolute;
         left: 50%;
@@ -124,7 +131,7 @@
         }
     }
 
-    .vl-notify-msg {
+    &.vl-notify-msg {
         min-width: 50px;
         display: inline;
         minheight: 40px;
@@ -141,7 +148,7 @@
         border-radius: 5px;
     }
 
-    .vl-notify-tips {
+    &.vl-notify-tips {
         min-width: 50px;
         max-width: 400px;
         display: inline;
@@ -152,6 +159,7 @@
         color: #fff;
         padding: 6px 12px;
         border-radius: 5px;
+        transform:none;
 
         &:after {
             content: " ";
@@ -161,7 +169,7 @@
         }
     }
 
-    .vl-notify-tips-0 {
+    &.vl-notify-tips-0 {
         //上
         &:after {
             border-top-color: transparent!important;
@@ -172,7 +180,7 @@
         }
     }
 
-    .vl-notify-tips-1 {
+    &.vl-notify-tips-1 {
         //右
         &:after {
             border-top-color: transparent!important;
@@ -183,7 +191,7 @@
         }
     }
 
-    .vl-notify-tips-2 {
+    &.vl-notify-tips-2 {
         //下
         &:after {
             border-top-color: transparent!important;
@@ -194,7 +202,7 @@
         }
     }
 
-    .vl-notify-tips-3 {
+    &.vl-notify-tips-3 {
         //左
         max-width: 300px;
 

@@ -3,7 +3,7 @@
 @Date:   2018-03-05 16:18:21
 @Email:  huabinglan@163.com
 @Last modified by:   左盐
-@Last modified time: 2018-03-19 12:29:09
+@Last modified time: 2018-03-24 15:55:10
 -->
 
 
@@ -56,7 +56,9 @@ export default {
   methods: {
     submitHandle: function() {
       let id = this.$layer.alert(
-        "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
+        "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!", {
+          shade: true
+        },
         () => {
           alert(1);
           this.$layer.close(id);
@@ -76,7 +78,6 @@ export default {
       let id = this.$layer.msg("5s后刷新页面", {
         time: 5
       }, () => {
-        console.log('asd');
         this.$layer.close(id);
       });
     },
@@ -86,7 +87,10 @@ export default {
       });
     },
     tipsHandle: function() {
-      let id = this.$layer.tips("在很久很久以前", '#tips');
+      let id = this.$layer.tips("在很久很久以前", '#tips', {
+        tips: 0,
+        time: 100
+      });
     },
     tips1Handle: function() {
       let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips1', {
@@ -117,7 +121,7 @@ export default {
             id: ids
           }
         },
-        area: ['800px', '500px'],
+        area: ['900px', '600px'],
         title: '',
         shade: false
       });
