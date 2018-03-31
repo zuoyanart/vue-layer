@@ -48,8 +48,8 @@
     "vue-layer",
     "zuoyan"
   ],
-  "author": "zuoyan",
-  "license": "ISC",
+  "author": "左盐",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/zuoyanart/vue-layer/issues"
   },

@@ -3,7 +3,7 @@
  * @Date:   2018-03-05 16:12:17
  * @Email:  huabinglan@163.com
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-31 10:36:27
+ * @Last modified time: 2018-03-31 10:39:54
  */
 
 
@@ -222,8 +222,6 @@ let Notification = (function(vue, globalOption = {
       area: opt.area
     };
     option = mergeJson(option, opt);
-    // console.log('option');
-    // console.log(option);
     return self.open(option);
   }
   /**
@@ -232,7 +230,6 @@ let Notification = (function(vue, globalOption = {
    * @return {[type]}    [description]
    */
   self.close = function(id) {
-    console.log(self.instancesVue);
     let oElm = document.getElementById(id);
     let layerMask = document.querySelector('.vl-notify-mask');
     if (layerMask) {
