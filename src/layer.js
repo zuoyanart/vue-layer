@@ -3,7 +3,7 @@
  * @Date:   2018-03-05 16:12:17
  * @Email:  huabinglan@163.com
  * @Last modified by:   左盐
- * @Last modified time: 2018-03-24 15:54:35
+ * @Last modified time: 2018-03-31 10:36:27
  */
 
 
@@ -31,6 +31,7 @@ let Notification = (function(vue, globalOption = {
     shadeClose: true
   };
   self.instances = {};
+  self.instancesVue = [];
   let seed = 0;
 
 
@@ -58,7 +59,11 @@ let Notification = (function(vue, globalOption = {
       type: options.type
     };
     document.body.appendChild(instance.vm.$el);
-
+    self.instancesVue[id] = {
+      'mask': '',
+      'main': instance.vm,
+      'iframe': '',
+    }
     if (options.shade) { //是否显示遮罩
       // let layerMask = document.querySelector('.vl-notify-mask');
       // if (layerMask) {
@@ -69,6 +74,7 @@ let Notification = (function(vue, globalOption = {
       });
       maskInstance.vm = maskInstance.$mount();
       document.body.appendChild(maskInstance.vm.$el);
+      self.instancesVue[id].mask = maskInstance.vm;
     }
     return id;
   };
@@ -226,20 +232,30 @@ let Notification = (function(vue, globalOption = {
    * @return {[type]}    [description]
    */
   self.close = function(id) {
+    console.log(self.instancesVue);
     let oElm = document.getElementById(id);
     let layerMask = document.querySelector('.vl-notify-mask');
     if (layerMask) {
       document.body.removeChild(layerMask);
+      self.instancesVue[id].mask.$destroy();
     }
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];
+      self.instancesVue[id].main.$destroy();
+      if (self.instancesVue[id].iframe != '') {
+        self.instancesVue[id].iframe.$destroy();
+      }
     } else {
       setTimeout(function() {
         let oElm = document.getElementById(id);
         if (oElm) {
           document.body.removeChild(oElm);
           delete self.instances[id];
+          self.instancesVue[id].main.$destroy();
+          if (self.instancesVue[id].iframe != '') {
+            self.instancesVue[id].iframe.$destroy();
+          }
         }
       }, 200);
     }

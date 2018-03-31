@@ -36,12 +36,12 @@ this.$layer.alert("找不到对象！");
   icon: -1,
   btn: '确定',
   time: 0,
-  shade: true,
+  shade: true,//是否显示遮罩
   yes: '',
   cancel: '',
   tips: [0,{}],//支持上右下左四个方向，通过1-4进行方向设定,可以设定tips: [1, '#c00']
   tipsMore: false,//是否允许多个tips
-  shadeClose: false,
+  shadeClose: true,//点击遮罩是否关闭
 }
 ```
 ## Method

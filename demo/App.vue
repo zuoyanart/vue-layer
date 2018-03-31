@@ -3,7 +3,7 @@
 @Date:   2018-03-05 16:18:21
 @Email:  huabinglan@163.com
 @Last modified by:   左盐
-@Last modified time: 2018-03-24 15:55:10
+@Last modified time: 2018-03-31 10:10:13
 -->
 
 
@@ -117,15 +117,14 @@ export default {
           content: formComp,
           parent: this,
           data: {
-            check: 'aaaaaaaaxxxx',
-            id: ids
+            check: 'aaaaaaaaxxxx'
           }
         },
         area: ['900px', '600px'],
         title: '',
         shade: false
       });
-    },
+    }
   }
 }
 </script>

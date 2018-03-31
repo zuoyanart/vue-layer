@@ -1,3 +1,11 @@
+<!--
+@Author: 左盐
+@Date:   2018-03-31 10:05:44
+@Email:  huabinglan@163.com
+@Project: xxx
+@Last modified by:   左盐
+@Last modified time: 2018-03-31 10:10:33
+-->
 <template lang="html">
   <el-form ref="form" :model="form" label-width="80px" style="height:100px;">
 <el-form-item label="活动名称">
@@ -47,46 +55,46 @@
 
 <script>
 export default {
-    data() {
-        return {
-            form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
-            }
-        }
-    },
-    props: {
-        check: {
-            type: String,
-            default: '111'
-        },
-        layerid: {
-            type: String,
-            default: ''
-        }
-    },
-    methods: {
-        onSubmit() {
-            console.log('submit!');
-            // alert(JSON.stringify(this.form));
-            console.log(this.parent);
-            console.log(this.$parent);
-            this.$parent.$emit('asd', 'kkk');
-            alert(this.check);
-        },
-        quxiao() {
-            this.$layer.close(this.layerid);
-        }
-    },
-    mounted() {
-        this.form.name = this.check;
+  data() {
+    return {
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      }
     }
+  },
+  props: {
+    check: {
+      type: String,
+      default: '111'
+    },
+    layerid: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    onSubmit() {
+      console.log('submit!');
+      // alert(JSON.stringify(this.form));
+      console.log(this.parent);
+      console.log(this.$parent);
+      this.$parent.$emit('asd', 'kkk');
+      alert(this.check);
+    },
+    quxiao() {
+      this.$layer.close(this.layerid);
+    }
+  },
+  mounted() {
+    this.form.name = this.check;
+  }
 }
 </script>
 
