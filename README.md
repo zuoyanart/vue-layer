@@ -72,7 +72,7 @@ layer.iframe({
   content: {
     content: componentName, //传递的组件对象
     parent: this,//当前的vue对象
-    data:[]//props
+    data:{}//props
   },
   area:['800px','600px'],
   title: 'title'
@@ -115,7 +115,7 @@ methods:{
 		content: {
 		  content: editForm, //传递的组件对象
 		  parent: this,//当前的vue对象
-		  data:[]//props
+		  data:{}//props
 		},
 		area:['800px','600px'],
 		title:"editForm"

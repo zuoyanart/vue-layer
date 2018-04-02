@@ -4,7 +4,7 @@
 @Email:  huabinglan@163.com
 @Project: xxx
 @Last modified by:   左盐
-@Last modified time: 2018-03-31 10:31:27
+@Last modified time: 2018-04-02 12:20:29
 -->
 <template lang="html">
 <div class="vl-notify vl-notify-main vl-notify-alert"  @mousemove="move" @mouseup="moveEnd" @click="resetZIndex"  :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2], zIndex: zindex, width: options.area[0], height: options.area[1]}">
@@ -63,6 +63,7 @@ export default {
         this.moveEnd(event);
       });
     }
+    this.resetZIndex();
   },
   methods: {
     resetZIndex() {
