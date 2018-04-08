@@ -234,7 +234,9 @@ let Notification = (function(vue, globalOption = {
     let layerMask = document.querySelector('.vl-notify-mask');
     if (layerMask) {
       document.body.removeChild(layerMask);
-      self.instancesVue[id].mask.$destroy();
+      if (self.instancesVue[id].mask) {
+        self.instancesVue[id].mask.$destroy();
+      }
     }
     if (oElm) {
       document.body.removeChild(oElm);
