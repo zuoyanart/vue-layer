@@ -5,11 +5,11 @@ import ElementUI from 'element-ui';
 
 
 Vue.prototype.$layer = layer(Vue, {
-    msgtime: 10
+  msgtime: 1
 });
 Vue.use(ElementUI);
 
 const app = new Vue({
-    el: '#app',
-    render: h => h(App),
+  el: '#app',
+  render: h => h(App),
 });

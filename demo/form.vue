@@ -85,8 +85,10 @@ export default {
       // alert(JSON.stringify(this.form));
       console.log(this.parent);
       console.log(this.$parent);
-      this.$parent.$emit('asd', 'kkk');
-      alert(this.check);
+      console.log('$parent');
+      console.log(this.$parent);
+      this.$layer.msg('aaaa');
+      // this.$parent.$emit('asd', 'kkk');
     },
     quxiao() {
       this.$layer.close(this.layerid);

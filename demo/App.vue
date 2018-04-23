@@ -48,9 +48,19 @@ export default {
   components: {
     'base-form': formComp,
   },
-  mounted() {
+  async mounted() {
+    let ids = [];
+    for (let i = 0; i < 10; i++) {
+      await tools.sleep(1000);
+      let id = this.loadingHandle();
+      ids.push(id);
+    }
+    await tools.sleep(2000);
+    for (let i = 0; i < 10; i++) {
+      this.$layer.close(ids[i]);
+    }
     this.$on('asd', function(val) {
-      alert(val);
+      this.$layer.msg(val);
     });
   },
   methods: {
@@ -65,10 +75,9 @@ export default {
         });
     },
     confirmHandle: function() {
-      let self = this;
-      let id = this.$layer.confirm("确定要<br/>删除吗？", function() {
-        console.log("执行了删除");
-        self.$layer.close(id);
+      let id = this.$layer.confirm("确定要<br/>删除吗？", () => {
+        this.$layer.msg("执行了删除");
+        // this.$layer.close(id);
       });
     },
     msgHandle: function() {
@@ -83,8 +92,9 @@ export default {
     },
     loadingHandle: function() {
       let id = this.$layer.loading({
-        time: 5
+        time: 500
       });
+      return id;
     },
     tipsHandle: function() {
       let id = this.$layer.tips("在很久很久以前", '#tips', {

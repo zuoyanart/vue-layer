@@ -231,7 +231,7 @@ let Notification = (function(vue, globalOption = {
    */
   self.close = function(id) {
     let oElm = document.getElementById(id);
-    let layerMask = document.querySelector('.vl-notify-mask');
+    let layerMask = document.getElementById(id + '_mask');
     if (layerMask) {
       document.body.removeChild(layerMask);
       if (self.instancesVue[id].mask) {

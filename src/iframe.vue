@@ -7,10 +7,10 @@
 @Last modified time: 2018-04-02 12:20:29
 -->
 <template lang="html">
-<div class="vl-notify vl-notify-main vl-notify-alert"  @mousemove="move" @mouseup="moveEnd" @click="resetZIndex"  :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2], zIndex: zindex, width: options.area[0], height: options.area[1]}">
-        <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}<i class="icon-remove" @click="close"></i></h2>
-        <div class="vl-notify-content" :style="contentStyle" :id="id"></div>
-</div>
+  <div class="vl-notify vl-notify-main vl-notify-alert vl-notify-iframe"  @mousemove="move" @mouseup="moveEnd" @focus="resetZIndex" tabindex="1"  :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],zIndex:zindex, width: options.area[0], height: options.area[1]}">
+          <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}<i class="icon-remove" @click="close"></i></h2>
+          <div class="vl-notify-content" :style="contentStyle" :id="id"></div>
+  </div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
       moveTop: 0, //上移的距离
       ismove: false,
       id: 'vlip' + new Date().getTime(),
-      zindex: 10000
+      zindex: 0
     }
   },
   props: {
@@ -66,8 +66,32 @@ export default {
     this.resetZIndex();
   },
   methods: {
+    getStyle(el, styleProp) {
+      var x = document.getElementById(el);
+      if (window.getComputedStyle) {
+        var y = document.defaultView.getComputedStyle(x, null).getPropertyValue(styleProp);
+      } else if (x.currentStyle) {
+        var y = x.currentStyle[styleProp];
+      }
+      return y;
+    },
     resetZIndex() {
-      this.zindex = (new Date().getTime() + '').substring(5);
+      let max = 500;
+      let doms = document.querySelectorAll('.vl-notify-iframe');
+      let domZindex = 0;
+      for (let i = 0, len = doms.length; i < len; i++) {
+        let value = parseInt(this.getStyle(doms[i].id, 'z-index'));
+        if (this.options.id == doms[i].id) {
+          domZindex = value;
+        }
+        if (max < value) {
+          max = value;
+        }
+      }
+      if (domZindex == max && max != 500) {
+        return;
+      }
+      this.zindex = max + 1;
     },
     async getContent() {
       await helper.sleep(10);
