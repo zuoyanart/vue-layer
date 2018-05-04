@@ -50,13 +50,13 @@ export default {
   },
   async mounted() {
     let ids = [];
-    for (let i = 0; i < 10; i++) {
-      await tools.sleep(1000);
+    for (let i = 0; i < 5; i++) {
+      await tools.sleep(10);
       let id = this.loadingHandle();
       ids.push(id);
     }
-    await tools.sleep(2000);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
+      await tools.sleep(200);
       this.$layer.close(ids[i]);
     }
     this.$on('asd', function(val) {

@@ -7,7 +7,7 @@
 @Last modified time: 2018-03-24 15:29:43
 -->
 <template lang="html">
-      <div class="vl-notify-mask" @click="close" :id="id + '_mask'"></div>
+      <div class="vl-notify-mask" @click="close" :id="id + '_mask'" :style="setOpacity"></div>
 </template>
 
 <script>
@@ -32,6 +32,17 @@ export default {
   },
   props: {
 
+  },
+  computed: {
+    setOpacity() {
+      console.log(this.type);
+      if (this.type == 3) {
+        return {
+          opacity: 0
+        };
+      }
+      return {};
+    }
   },
   methods: {
     close(event) {
