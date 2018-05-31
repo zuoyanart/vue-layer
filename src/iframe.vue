@@ -91,7 +91,10 @@ export default {
       if (domZindex == max && max != 500) {
         return;
       }
-      this.zindex = max + 1;
+      this.zindex = max + 2;
+      if(this.options.shadeCover) {
+          this.options.layer.instancesVue[this.options.id].mask.$el.style.zIndex = this.zindex-1;
+      }
     },
     async getContent() {
       await helper.sleep(10);
