@@ -10,14 +10,50 @@
 
 <style lang="less">
 .title {
-    height: 30px;
-    line-height: 30px;
-    margin-top: 30px;
-    margin-bottom: 10px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 </style>
 <template>
 <div id="app" style="width:1000px;margin:100px auto;">
+    <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
   <h2 class="title">alert</h2>
   <el-button type="primary" @click="submitHandle">提交</el-button>
   <h2 class="title">confirm</h2>
@@ -38,15 +74,15 @@
 </template>
 
 <script>
-import tools from './js/tools.js';
-import formComp from './form.vue';
+import tools from "./js/tools.js";
+import formComp from "./form.vue";
 
 export default {
   data() {
-    return {}
+    return {};
   },
   components: {
-    'base-form': formComp,
+    "base-form": formComp
   },
   async mounted() {
     let ids = [];
@@ -59,36 +95,49 @@ export default {
       await tools.sleep(200);
       this.$layer.close(ids[i]);
     }
-    this.$on('asd', function(val) {
+    this.$on("asd", function(val) {
       this.$layer.msg(val);
     });
   },
   methods: {
     submitHandle: function() {
       let id = this.$layer.alert(
-        "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!", {
+        "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
+        {
           shade: true
         },
         () => {
           alert(1);
           this.$layer.close(id);
-        });
+        }
+      );
     },
     confirmHandle: function() {
-      let id = this.$layer.confirm("确定要<br/>删除吗？", () => {
-        this.$layer.msg("执行了删除");
-        // this.$layer.close(id);
-      });
+      let id = this.$layer.confirm(
+        "确定要<br/>删除吗？",
+        () => {
+          this.$layer.msg("执行了删除");
+          this.$layer.close(id);
+        },
+        () => {
+          this.$layer.msg("执行取消");
+          this.$layer.close(id);
+        }
+      );
     },
     msgHandle: function() {
       let id = this.$layer.msg("弱弱的提示");
     },
     msg1Handle: function() {
-      let id = this.$layer.msg("5s后刷新页面", {
-        time: 5
-      }, () => {
-        this.$layer.close(id);
-      });
+      let id = this.$layer.msg(
+        "5s后刷新页面",
+        {
+          time: 5
+        },
+        () => {
+          this.$layer.close(id);
+        }
+      );
     },
     loadingHandle: function() {
       let id = this.$layer.loading({
@@ -97,29 +146,44 @@ export default {
       return id;
     },
     tipsHandle: function() {
-      let id = this.$layer.tips("在很久很久以前", '#tips', {
+      let id = this.$layer.tips("在很久很久以前", "#tips", {
         tips: 0,
         time: 100
       });
     },
     tips1Handle: function() {
-      let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips1', {
-        tips: 1,
-        time: 100
-      });
+      let id = this.$layer.tips(
+        "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
+        "#tips1",
+        {
+          tips: 1,
+          time: 100
+        }
+      );
     },
     tips2Handle: function() {
-      let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips2', {
-        tips: 2
-      });
+      let id = this.$layer.tips(
+        "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
+        "#tips2",
+        {
+          tips: 2
+        }
+      );
     },
     tips3Handle: function() {
-      let id = this.$layer.tips("在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，", '#tips3', {
-        tips: [3, {
-          "selfa": true
-        }],
-        time: 10
-      });
+      let id = this.$layer.tips(
+        "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
+        "#tips3",
+        {
+          tips: [
+            3,
+            {
+              selfa: true
+            }
+          ],
+          time: 10
+        }
+      );
     },
     pageHandle: function() {
       let ids = this.$layer.iframe({
@@ -127,14 +191,14 @@ export default {
           content: formComp,
           parent: this,
           data: {
-            check: 'aaaaaaaaxxxx'
+            check: "aaaaaaaaxxxx"
           }
         },
-        area: ['900px', '600px'],
-        title: '',
+        area: ["900px", "600px"],
+        title: "",
         shade: false
       });
     }
   }
-}
+};
 </script>

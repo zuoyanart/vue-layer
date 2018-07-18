@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import pzbutton from './components/button/button.vue';
-import helper from './helper/helper.js';
+import pzbutton from "./components/button/button.vue";
+import helper from "./helper/helper.js";
 
 export default {
   data() {
@@ -27,18 +27,19 @@ export default {
       moveLeft: 0, //左移的距离
       moveTop: 0, //上移的距离
       ismove: false
-    }
+    };
   },
   props: {
     options: {
       type: Object,
       default: function() {
-        return {}
+        return {};
       }
     }
   },
   methods: {
-    close(event) {
+    async close(event) {
+      await helper.btncancel(event, this.options);
       helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
     },
     btnyes(event) {
@@ -56,8 +57,10 @@ export default {
     move(event) {
       if (this.ismove) {
         let o = document.getElementById(this.options.id + "");
-        o.style.left = this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
-        o.style.top = this.options.offset[1] + (event.clientY - this.moveTop) + "px";
+        o.style.left =
+          this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
+        o.style.top =
+          this.options.offset[1] + (event.clientY - this.moveTop) + "px";
       }
     },
     moveEnd(event) {
@@ -66,24 +69,29 @@ export default {
   },
   async mounted() {
     await helper.sleep(20);
-    if (this.options.shade) { //是否显示遮罩
-      document.getElementById(this.options.id + '_mask').addEventListener('mousemove', (event) => {
-        this.move(event);
-      });
-      document.getElementById(this.options.id + '_mask').addEventListener('mouseup', (event) => {
-        this.moveEnd(event);
-      });
+    if (this.options.shade) {
+      //是否显示遮罩
+      document
+        .getElementById(this.options.id + "_mask")
+        .addEventListener("mousemove", event => {
+          this.move(event);
+        });
+      document
+        .getElementById(this.options.id + "_mask")
+        .addEventListener("mouseup", event => {
+          this.moveEnd(event);
+        });
     } else {
-      document.addEventListener('mousemove', (event) => {
+      document.addEventListener("mousemove", event => {
         this.move(event);
       });
-      document.addEventListener('mouseup', (event) => {
+      document.addEventListener("mouseup", event => {
         this.moveEnd(event);
       });
     }
   },
   components: {
-    pzbutton,
+    pzbutton
   }
-}
+};
 </script>

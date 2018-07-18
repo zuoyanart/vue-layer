@@ -26,7 +26,7 @@ export default class helper {
    * @return {[type]}       [description]
    */
   static btnyes(event, options) {
-    if (typeof(options.yes) == "function") {
+    if (typeof (options.yes) == "function") {
       options.yes();
     } else {
       options.layer.close(options.id);
@@ -37,9 +37,9 @@ export default class helper {
    * @param  {[type]} event [description]
    * @return {[type]}       [description]
    */
-  static btncancel(event, options) {
-    if (typeof(options.cancel) == "function") {
-      options.cancel();
+  static async btncancel(event, options) {
+    if (typeof (options.cancel) == "function") {
+      await options.cancel();
     } else {
       options.layer.close(options.id);
     }

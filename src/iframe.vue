@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import helper from './helper/helper.js';
+import helper from "./helper/helper.js";
 
 export default {
   data() {
@@ -22,44 +22,47 @@ export default {
       moveLeft: 0, //左移的距离
       moveTop: 0, //上移的距离
       ismove: false,
-      id: 'vlip' + new Date().getTime(),
+      id: "vlip" + new Date().getTime(),
       zindex: 0
-    }
+    };
   },
   props: {
     options: {
       type: Object,
       default: function() {
-        return {
-
-        }
+        return {};
       }
     }
   },
   computed: {
     contentStyle() {
       return {
-        height: (parseInt(this.options.area[1]) - 50) + 'px',
-        minHeight: 'inherit',
-        overflow: 'auto',
-      }
-    },
+        height: parseInt(this.options.area[1]) - 50 + "px",
+        minHeight: "inherit",
+        overflow: "auto"
+      };
+    }
   },
   async mounted() {
     this.getContent();
     await helper.sleep(20);
-    if (this.options.shade) { //是否显示遮罩
-      document.getElementById(this.options.id + '_mask').addEventListener('mousemove', (event) => {
-        this.move(event);
-      });
-      document.getElementById(this.options.id + '_mask').addEventListener('mouseup', (event) => {
-        this.moveEnd(event);
-      });
+    if (this.options.shade) {
+      //是否显示遮罩
+      document
+        .getElementById(this.options.id + "_mask")
+        .addEventListener("mousemove", event => {
+          this.move(event);
+        });
+      document
+        .getElementById(this.options.id + "_mask")
+        .addEventListener("mouseup", event => {
+          this.moveEnd(event);
+        });
     } else {
-      document.addEventListener('mousemove', (event) => {
+      document.addEventListener("mousemove", event => {
         this.move(event);
       });
-      document.addEventListener('mouseup', (event) => {
+      document.addEventListener("mouseup", event => {
         this.moveEnd(event);
       });
     }
@@ -69,7 +72,9 @@ export default {
     getStyle(el, styleProp) {
       var x = document.getElementById(el);
       if (window.getComputedStyle) {
-        var y = document.defaultView.getComputedStyle(x, null).getPropertyValue(styleProp);
+        var y = document.defaultView
+          .getComputedStyle(x, null)
+          .getPropertyValue(styleProp);
       } else if (x.currentStyle) {
         var y = x.currentStyle[styleProp];
       }
@@ -77,10 +82,10 @@ export default {
     },
     resetZIndex() {
       let max = 500;
-      let doms = document.querySelectorAll('.vl-notify-iframe');
+      let doms = document.querySelectorAll(".vl-notify-iframe");
       let domZindex = 0;
       for (let i = 0, len = doms.length; i < len; i++) {
-        let value = parseInt(this.getStyle(doms[i].id, 'z-index'));
+        let value = parseInt(this.getStyle(doms[i].id, "z-index"));
         if (this.options.id == doms[i].id) {
           domZindex = value;
         }
@@ -96,8 +101,9 @@ export default {
     async getContent() {
       await helper.sleep(10);
       let propsData = JSON.parse(JSON.stringify(this.options.content.data));
-      propsData['layerid'] = this.options.id;
-      let instance = new this.options.content.content({ //具体参数信息，请参考vue源码
+      propsData["layerid"] = this.options.id;
+      let instance = new this.options.content.content({
+        //具体参数信息，请参考vue源码
         parent: this.options.content.parent,
         propsData: propsData
       });
@@ -105,7 +111,8 @@ export default {
       document.getElementById(this.id).appendChild(instance.vm.$el);
       this.options.layer.instancesVue[this.options.id].iframe = instance.vm;
     },
-    close(event) {
+    async close(event) {
+      await helper.btncancel(event, this.options);
       helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
     },
     btnyes(event) {
@@ -123,14 +130,16 @@ export default {
     move(event) {
       if (this.ismove) {
         let o = document.getElementById(this.options.id + "");
-        o.style.left = this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
-        o.style.top = this.options.offset[1] + (event.clientY - this.moveTop) + "px";
+        o.style.left =
+          this.options.offset[0] + (event.clientX - this.moveLeft) + "px";
+        o.style.top =
+          this.options.offset[1] + (event.clientY - this.moveTop) + "px";
         this.resetZIndex();
       }
     },
     moveEnd(event) {
       this.ismove = false;
     }
-  },
-}
+  }
+};
 </script>
