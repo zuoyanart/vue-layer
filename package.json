@@ -7,7 +7,9 @@
     "build": "webpack --config ./build/webpack.prod.conf.js --colors",
     "dev": "node build/dev-server.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "file-loader": "^2.0.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^6.2.4",
