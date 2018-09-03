@@ -8,7 +8,7 @@
 
 
 
-let Notification = (function(vue, globalOption = {
+let Notification = (function (vue, globalOption = {
   msgtime: 1.5, //msg消失时间
 }) {
   let NotificationConstructor = vue.extend(require('./layer.vue'));
@@ -41,7 +41,7 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.open = function(options) {
+  self.open = function (options) {
     options = mergeJson(options, defOptions);
     let id = `notification_${new Date().getTime()}_${  seed++}`;
     options.id = id;
@@ -85,8 +85,8 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} yes     [description]
    * @return {[type]}         [description]
    */
-  self.alert = function(content, options, yes) {
-    switch (typeof(options)) {
+  self.alert = function (content, options, yes) {
+    switch (typeof (options)) {
       case 'function':
         yes = options;
         options = {};
@@ -97,7 +97,7 @@ let Notification = (function(vue, globalOption = {
         options = {};
         break;
     }
-    yes = typeof(yes) === 'function' ? yes : '';
+    yes = typeof (yes) === 'function' ? yes : '';
 
     options.content = content || '';
     options.yes = yes;
@@ -110,8 +110,8 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} yes     [description]
    * @return {[type]}         [description]
    */
-  self.confirm = function(content, options, yes, cancel) {
-    switch (typeof(options)) {
+  self.confirm = function (content, options, yes, cancel) {
+    switch (typeof (options)) {
       case 'function':
         cancel = yes;
         yes = options;
@@ -123,8 +123,8 @@ let Notification = (function(vue, globalOption = {
         options = {};
         break;
     }
-    yes = typeof(yes) === 'function' ? yes : '';
-    cancel = typeof(cancel) === 'function' ? cancel : 'cancel';
+    yes = typeof (yes) === 'function' ? yes : '';
+    cancel = typeof (cancel) === 'function' ? cancel : 'cancel';
 
     options.content = content || '';
     options.yes = yes;
@@ -139,8 +139,8 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} end     [description]
    * @return {[type]}         [description]
    */
-  self.msg = function(content, options, end) {
-    switch (typeof(options)) {
+  self.msg = function (content, options, end) {
+    switch (typeof (options)) {
       case 'function':
         end = options;
         options = {};
@@ -151,7 +151,7 @@ let Notification = (function(vue, globalOption = {
         options = {};
         break;
     }
-    end = typeof(end) === 'function' ? end : '';
+    end = typeof (end) === 'function' ? end : '';
     options.type = 5;
     options.time = options.time ? options.time : globalOption.msgtime;
     options.content = content || 'this is a msg!!';
@@ -163,8 +163,8 @@ let Notification = (function(vue, globalOption = {
     return self.open(options);
   }
   //loading
-  self.loading = function(icon, options) {
-    if (typeof(icon) === 'object') {
+  self.loading = function (icon, options) {
+    if (typeof (icon) === 'object') {
       options = icon;
       icon = 0;
     }
@@ -193,13 +193,13 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.tips = function(content, follow, options) {
+  self.tips = function (content, follow, options) {
     options = options || {};
     options.type = 4;
     options.content = content || '';
     options.title = follow || 'body';
     options.tips = options.tips || [0, {}];
-    if (typeof(options.tips) !== 'object') {
+    if (typeof (options.tips) !== 'object') {
       options.tips = [options.tips, {}];
     }
     if (options.shade == undefined) {
@@ -215,7 +215,7 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.iframe = function(opt) {
+  self.iframe = function (opt) {
     let option = {
       type: 2,
       content: opt.content,
@@ -225,11 +225,30 @@ let Notification = (function(vue, globalOption = {
     return self.open(option);
   }
   /**
+   * 获取信息框
+   */
+  self.prompt = function (title = '请填写', yes = '', cancel = '', options = {
+    formType: 1,
+    value: ''
+  }) {
+    switch (typeof (cancel)) {
+      case 'object':
+        options = cancel;
+        break;
+    }
+
+    options.content = '';
+    options.yes = yes;
+    options.type = 6;
+    options.title = title;
+    return self.open(options);
+  }
+  /**
    * 关闭一个弹窗
    * @param  {[type]} id [description]
    * @return {[type]}    [description]
    */
-  self.close = function(id) {
+  self.close = function (id) {
     let oElm = document.getElementById(id);
     let layerMask = document.getElementById(id + '_mask');
     if (layerMask) {
@@ -246,7 +265,7 @@ let Notification = (function(vue, globalOption = {
         self.instancesVue[id].iframe.$destroy();
       }
     } else {
-      setTimeout(function() {
+      setTimeout(function () {
         let oElm = document.getElementById(id);
         if (oElm) {
           document.body.removeChild(oElm);
@@ -264,7 +283,7 @@ let Notification = (function(vue, globalOption = {
    * @param  {[type]} id [description]
    * @return {[type]}    [description]
    */
-  self.closeAll = function(type = -1) {
+  self.closeAll = function (type = -1) {
     let types = {
       'alert': 0,
       'page': 1,

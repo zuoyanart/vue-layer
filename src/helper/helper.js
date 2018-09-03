@@ -27,7 +27,7 @@ export default class helper {
    */
   static btnyes(event, options) {
     if (typeof (options.yes) == "function") {
-      options.yes();
+      options.yes(options.id);
     } else {
       options.layer.close(options.id);
     }

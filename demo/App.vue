@@ -27,6 +27,8 @@
     <el-button type="primary" @click="msg1Handle">带回调</el-button>
     <h2 class="title">loading</h2>
     <el-button type="primary" @click="loadingHandle">默认样式</el-button>
+    <h2 class="title">prompt</h2>
+    <el-button type="primary" @click="promptHandle">弹出</el-button>
     <h2 class="title">tips</h2>
     <el-button type="primary" id="tips" @click="tipsHandle">上</el-button>
     <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle">右</el-button>
@@ -116,14 +118,13 @@ export default {
   },
   methods: {
     submitHandle: function() {
-      let id = this.$layer.alert(
+      this.$layer.alert(
         "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
         {
           shade: true
         },
-        () => {
-          alert(1);
-          this.$layer.close(id);
+        index => {
+          this.$layer.close(index);
         }
       );
     },
@@ -156,9 +157,12 @@ export default {
     },
     loadingHandle: function() {
       let id = this.$layer.loading({
-        time: 500
+        time: 3
       });
       return id;
+    },
+    promptHandle: function() {
+      this.$layer.prompt("你好");
     },
     tipsHandle: function() {
       let id = this.$layer.tips("在很久很久以前", "#tips", {
