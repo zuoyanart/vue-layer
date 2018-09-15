@@ -131,6 +131,9 @@ export default {
     confirmHandle: function() {
       let id = this.$layer.confirm(
         "确定要<br/>删除吗？",
+        {
+          btn: ["asd", "4545"]
+        },
         () => {
           this.$layer.msg("执行了删除");
           this.$layer.close(id);
@@ -210,7 +213,10 @@ export default {
           content: formComp,
           parent: this,
           data: {
-            check: "aaaaaaaaxxxx"
+            check: "aaaaaaaaxxxx",
+            fn: function() {
+              alert(1);
+            }
           }
         },
         area: ["900px", "600px"],

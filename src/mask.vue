@@ -11,31 +11,28 @@
 </template>
 
 <script>
-import helper from './helper/helper.js';
+import helper from "./helper/helper.js";
 
 export default {
   data() {
     return {
-      id: '',
+      id: "",
       type: 0, //0（alert默认）1（页面层）2（iframe层）3（loading）4（tips层）,5(msg)
-      title: '信息',
-      content: '',
-      area: 'auto',
-      offset: 'auto',
+      title: "信息",
+      content: "",
+      area: "auto",
+      offset: "auto",
       icon: -1,
-      btn: '确定',
+      btn: "确定",
       time: 0,
       shade: true,
-      yes: '',
-      cancel: ''
-    }
+      yes: "",
+      cancel: ""
+    };
   },
-  props: {
-
-  },
+  props: {},
   computed: {
     setOpacity() {
-      console.log(this.type);
       if (this.type == 3) {
         return {
           opacity: 0
@@ -49,20 +46,19 @@ export default {
       if (this.shadeClose) {
         helper.clickMaskCloseAll(event, this.layer, this.id);
       }
-    },
-
-  },
-}
+    }
+  }
+};
 </script>
 
 <style lang="css">
 .vl-notify-mask {
-    background-color: #ccc;
-    opacity: 0.2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  background-color: #ccc;
+  opacity: 0.2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

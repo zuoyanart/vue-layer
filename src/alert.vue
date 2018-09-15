@@ -11,8 +11,8 @@
         <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}<i class="icon-remove" @click="close"></i></h2>
         <div class="vl-notify-content" v-html="options.content"></div>
         <div class="vl-notify-btns">
-            <pzbutton btn="primary" @click.native="btnyes" size="small">确定</pzbutton>
-            <pzbutton btn="default" @click.native="btncancel" size="small" v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'">取消</pzbutton>
+            <pzbutton btn="primary" @click.native="btnyes" size="small">{{btns[0]}}</pzbutton>
+            <pzbutton btn="default" @click.native="btncancel" size="small" v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'">{{btns[1]}}</pzbutton>
         </div>
 </div>
 </template>
@@ -26,7 +26,8 @@ export default {
     return {
       moveLeft: 0, //左移的距离
       moveTop: 0, //上移的距离
-      ismove: false
+      ismove: false,
+      btns: []
     };
   },
   props: {
@@ -65,10 +66,21 @@ export default {
     },
     moveEnd(event) {
       this.ismove = false;
+    },
+    formatBtnText() {
+      const a = this.options.btn;
+      if (typeof a === "string") {
+        this.btns = [this.options.btn, "取消"];
+        return;
+      }
+      if (a instanceof Array) {
+        this.btns = [a[0] || "确定", a[1] || "取消"];
+      }
     }
   },
   async mounted() {
     await helper.sleep(20);
+    this.formatBtnText();
     if (this.options.shade) {
       //是否显示遮罩
       document

@@ -18,7 +18,6 @@ export default class helper {
     if (mask && (mask.indexOf("notify-mask") > -1 || mask.indexOf("icon-remove") > -1)) {
       layer.close(id);
     }
-    //console.log('aaaaa00000000');
   }
   /**
    * 默认的yes按钮操作
@@ -83,6 +82,27 @@ export default class helper {
    */
   static sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
+  }
+  /**
+   *  深度拷贝
+   * @param {*} source 
+   */
+  static deepClone(source) {
+    if (!source || typeof source !== 'object') {
+      throw new Error('error arguments', 'shallowClone');
+    }
+    var targetObj = source.constructor === Array ? [] : {};
+    for (var keys in source) {
+      if (source.hasOwnProperty(keys)) {
+        if (source[keys] && typeof source[keys] === 'object') {
+          targetObj[keys] = source[keys].constructor === Array ? [] : {};
+          targetObj[keys] = deepClone(source[keys]);
+        } else {
+          targetObj[keys] = source[keys];
+        }
+      }
+    }
+    return targetObj;
   }
 
 

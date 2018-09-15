@@ -58,46 +58,51 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
         delivery: false,
         type: [],
-        resource: '',
-        desc: ''
+        resource: "",
+        desc: ""
       }
-    }
+    };
   },
   props: {
     check: {
       type: String,
-      default: '111'
+      default: "111"
     },
     layerid: {
       type: String,
-      default: ''
+      default: ""
+    },
+    fn: {
+      type: Function,
+      default: function() {}
     }
   },
   methods: {
     onSubmit() {
-      console.log('submit!');
+      console.log("submit!");
       // alert(JSON.stringify(this.form));
       console.log(this.parent);
       console.log(this.$parent);
-      console.log('$parent');
+      console.log("$parent");
       console.log(this.$parent);
-      this.$layer.msg('aaaa');
+      this.$layer.msg("aaaa");
       // this.$parent.$emit('asd', 'kkk');
     },
     quxiao() {
+      this.fn();
       this.$layer.close(this.layerid);
     }
   },
   mounted() {
     this.form.name = this.check;
   }
-}
+};
 </script>
 
 <style lang="css">
