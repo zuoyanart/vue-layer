@@ -14,6 +14,17 @@
   outline: none;
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translate(-100%, -100%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
 .vl-notify {
   position: fixed;
   z-index: 1000;
@@ -62,6 +73,7 @@
     padding: 0 8px 0 0;
   }
   &.vl-notify-alert {
+    animation: fadein 0.3s;
     h2.vl-notice-title {
       box-sizing: border-box;
       width: 100%;
@@ -92,6 +104,7 @@
     }
   }
   &.vl-notify-loading {
+    animation: fadein 0.2s;
     display: inline;
     left: 50%;
     top: 50%;
@@ -121,6 +134,7 @@
     }
   }
   &.vl-notify-msg {
+    animation: fadein 0.2s;
     min-width: 50px;
     display: inline;
     minheight: 40px;
