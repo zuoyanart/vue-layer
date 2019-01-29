@@ -138,8 +138,9 @@ export default {
           icon: 3
         },
         () => {
-          this.$layer.msg("执行了删除");
-          this.$layer.close(id);
+          // this.$layer.msg("执行了删除");
+          // this.$layer.close(id);
+          this.$layer.alert(1);
         },
         () => {
           this.$layer.msg("执行取消");

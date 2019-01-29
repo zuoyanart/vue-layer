@@ -1,5 +1,7 @@
 var utils = require('./utils');
 var webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
   entry: {
     index: './index.js',
@@ -8,7 +10,7 @@ module.exports = {
     path: 'dist',
     library: 'vue-layer',
     filename: 'vue-layer.js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd' //只能在浏览器端执行
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -29,7 +31,11 @@ module.exports = {
       exclude: /node_modules/
     }, {
       test: /\.less$/,
-      loader: "style!css!less"
+      loader: "style!css!less",
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: "css-loader"
+      })
     }]
   },
   vue: {
@@ -46,6 +52,7 @@ module.exports = {
         warnings: false
       }
     }),
+    new ExtractTextPlugin('css/[name].css')
     // new webpack.ProvidePlugin({//打包第三方库
     //       vue: 'vue'
     //   }),
