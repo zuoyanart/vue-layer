@@ -112,27 +112,30 @@ export default {
       await tools.sleep(200);
       this.$layer.close(ids[i]);
     }
-    this.$on("asd", function(val) {
+    this.$on("asd", function (val) {
       this.$layer.msg(val);
     });
   },
   methods: {
-    submitHandle: function() {
+    submitHandle: function () {
       this.$layer.alert(
         "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
         {
-          shade: true
+          shade: true,
+          icon: 2
         },
         index => {
           this.$layer.close(index);
         }
       );
     },
-    confirmHandle: function() {
+    confirmHandle: function () {
       let id = this.$layer.confirm(
         "确定要<br/>删除吗？",
         {
-          btn: ["asd", "4545"]
+          title: "ces",
+          btn: ["asd", "4545"],
+          icon: 3
         },
         () => {
           this.$layer.msg("执行了删除");
@@ -144,10 +147,10 @@ export default {
         }
       );
     },
-    msgHandle: function() {
+    msgHandle: function () {
       let id = this.$layer.msg("弱弱的提示");
     },
-    msg1Handle: function() {
+    msg1Handle: function () {
       let id = this.$layer.msg(
         "5s后刷新页面",
         {
@@ -158,22 +161,22 @@ export default {
         }
       );
     },
-    loadingHandle: function() {
+    loadingHandle: function () {
       let id = this.$layer.loading({
         time: 3
       });
       return id;
     },
-    promptHandle: function() {
+    promptHandle: function () {
       this.$layer.prompt("你好");
     },
-    tipsHandle: function() {
+    tipsHandle: function () {
       let id = this.$layer.tips("在很久很久以前", "#tips", {
         tips: 0,
         time: 100
       });
     },
-    tips1Handle: function() {
+    tips1Handle: function () {
       let id = this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips1",
@@ -183,7 +186,7 @@ export default {
         }
       );
     },
-    tips2Handle: function() {
+    tips2Handle: function () {
       let id = this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips2",
@@ -192,7 +195,7 @@ export default {
         }
       );
     },
-    tips3Handle: function() {
+    tips3Handle: function () {
       let id = this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips3",
@@ -207,14 +210,14 @@ export default {
         }
       );
     },
-    pageHandle: function() {
+    pageHandle: function () {
       let ids = this.$layer.iframe({
         content: {
           content: formComp,
           parent: this,
           data: {
             check: "aaaaaaaaxxxx",
-            fn: function() {
+            fn: function () {
               alert(1);
             }
           }

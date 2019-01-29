@@ -72,5 +72,6 @@ export default {
 </script>
 
 <style lang="less">
+@import "//at.alicdn.com/t/font_1035225_5g8nvj1jleg.css";
 @import "./css/index.less";
 </style>

@@ -80,7 +80,7 @@ export default {
     },
     fn: {
       type: Function,
-      default: function() {}
+      default: function () { }
     }
   },
   methods: {
@@ -88,9 +88,9 @@ export default {
       console.log("submit!");
       // alert(JSON.stringify(this.form));
       console.log(this.parent);
-      console.log(this.$parent);
       console.log("$parent");
       console.log(this.$parent);
+      console.log(this.form);
       this.$layer.msg("aaaa");
       // this.$parent.$emit('asd', 'kkk');
     },

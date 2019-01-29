@@ -54,7 +54,7 @@
     min-height: 100px;
     background-color: #fff;
     border: 1px solid #eee;
-    box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
     border-radius: 2px;
     padding-bottom: 5px;
   }
@@ -74,6 +74,7 @@
   }
   &.vl-notify-alert {
     animation: fadein 0.3s;
+    max-width: 500px;
     h2.vl-notice-title {
       box-sizing: border-box;
       width: 100%;
@@ -101,6 +102,19 @@
           content: "\2716";
         }
       }
+    }
+    .vl-notify-content {
+      display: flex;
+      .vl-notify-content-div {
+        margin-left: 10px;
+        flex: 1;
+      }
+    }
+  }
+  &.vl-notify-iframe {
+    max-width: 2000px;
+    .vl-notify-content {
+      padding: 0;
     }
   }
   &.vl-notify-loading {
@@ -137,7 +151,7 @@
     animation: fadein 0.2s;
     min-width: 50px;
     display: inline;
-    minheight: 40px;
+    min-height: 40px;
     font-size: 14px;
     left: 50%;
     top: 50%;
@@ -207,13 +221,6 @@
       border-right-color: transparent !important;
       right: -8px;
       top: 0;
-    }
-  }
-  .vl-notify-iframe {
-    //iframe
-    max-width: 2000px;
-    .vl-notify-content {
-      padding: 0;
     }
   }
 }
