@@ -7,10 +7,20 @@
     @focus="resetZIndex"
     tabindex="1"
     :id="options.id"
-    :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2],zIndex:zindex, width: options.area[0], height: options.area[1]}"
+    :style="getBaseStyle"
   >
     <h2 class="vl-notice-title" @mousedown="moveStart">
       {{options.title}}
+      <i
+        class="vlayer vlicon-mini lv-icon-mini"
+        @click="mini"
+        v-if="options.maxmin === true && maxMiniState === 0"
+      ></i>
+      <i
+        class="vlayer vlicon-max lv-icon-max"
+        @click="maxmini"
+        v-if="options.maxmin === true && maxMiniState !== 0"
+      ></i>
       <i class="icon-remove" @click="close"></i>
     </h2>
     <slot></slot>
@@ -25,7 +35,9 @@ export default {
       moveTop: 0, //上移的距离
       ismove: false,
       id: "vlip" + new Date().getTime(),
-      zindex: 1
+      zindex: 1,
+      addStyle: {},
+      maxMiniState: 0,//0normal,1mini,2max
     };
   },
   props: {
@@ -68,7 +80,23 @@ export default {
     }
     this.resetZIndex();
   },
+  computed: {
+    getBaseStyle() {
+      const op = this.options;
+      const styleBase = { left: op.offset[0] + 'px', top: op.offset[1] + 'px', margin: op.offset[2], zIndex: this.zindex, width: op.area[0], height: op.area[1] };
+      let a = helper.deepClone(styleBase);
+      console.log(a);
+      console.log(this.options.offset[0]);
+      return this.mergeJson(a, this.addStyle);
+    }
+  },
   methods: {
+    mergeJson(options, def) {
+      for (let key in def) {
+        options[key] = def[key];
+      }
+      return options;
+    },
     getStyle(el, styleProp) {
       var x = document.getElementById(el);
       if (window.getComputedStyle) {
@@ -102,6 +130,35 @@ export default {
     async close(event) {
       await helper.btncancel(event, this.options);
       helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
+    },
+    async mini() {//最小化窗口
+      this.addStyle = {
+        overflow: "hidden",
+        bottom: 0,
+        left: "130px",
+        width: "100px",
+        height: "43px",
+        minHeight: "43px",
+        top: 'auto'
+      };
+      this.maxMiniState = 1;
+    },
+    maxmini() {
+      document.getElementById(this.options.id).removeAttribute('style');
+      this.addStyle = {
+        left: 'tpx',
+        top: 'tpx',
+        margin: 't',
+      };
+      this.maxMiniState = 0;
+    },
+    async max() {//最小化窗口
+      this.addStyle = {
+        overflow: "hidden",
+        bottom: 0,
+        left: 0
+      };
+      this.maxMiniState = 2;
     },
     moveStart(event) {
       helper.moveStart(event, this.options);

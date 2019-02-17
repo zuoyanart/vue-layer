@@ -6,10 +6,15 @@
 @Last modified by:   左盐
 @Last modified time: 2018-03-24 15:49:07
 -->
-<template lang="html">
-    <label class="vl-notify vl-notify-tips" :class="[this.options.tips[1],'vl-notify-tips-'+ this.options.tips[0]]" :id="options.id" v-html="options.content">
-        <em></em>
-    </label>
+<template>
+  <label
+    class="vl-notify vl-notify-tips"
+    :class="[this.options.tips[1],'vl-notify-tips-'+ this.options.tips[0]]"
+    :id="options.id"
+    v-html="options.content"
+  >
+    <em></em>
+  </label>
 </template>
 
 <script>
@@ -22,13 +27,13 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {}
       }
     }
   },
   computed: {
-    'offset': async function() {
+    'offset': async function () {
       return await this.getOffset();
     }
   },
@@ -38,7 +43,7 @@ export default {
       this.options.time = 2;
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       self.btnyes();
     }, self.options.time * 1000);
 
@@ -46,10 +51,10 @@ export default {
 
   },
   methods: {
-    'btnyes': function(event) {
+    'btnyes': function (event) {
       let o = document.getElementById(this.options.id);
       if (o) {
-        if (typeof(this.options.yes) == "function") {
+        if (typeof (this.options.yes) == "function") {
           this.options.yes();
         }
         this.options.layer.close(this.options.id);
@@ -57,7 +62,7 @@ export default {
         // o.remove();
       }
     },
-    sleep: function(ms) {
+    sleep: function (ms) {
       return new Promise((resolve, reject) => {
         setTimeout(resolve, ms);
       });

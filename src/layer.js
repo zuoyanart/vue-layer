@@ -23,6 +23,7 @@ let Notification = (function (vue, globalOption = {
     icon: -1,
     btn: '确定',
     time: 0,
+    maxmin: false, //最大最小化
     shade: true,
     yes: '',
     cancel: '',
