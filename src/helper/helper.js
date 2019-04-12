@@ -87,22 +87,34 @@ export default class helper {
    *  深度拷贝
    * @param {*} source 
    */
-  static deepClone(source) {
-    if (!source || typeof source !== 'object') {
-      throw new Error('error arguments', 'shallowClone');
-    }
-    var targetObj = source.constructor === Array ? [] : {};
-    for (var keys in source) {
-      if (source.hasOwnProperty(keys)) {
-        if (source[keys] && typeof source[keys] === 'object') {
-          targetObj[keys] = source[keys].constructor === Array ? [] : {};
-          targetObj[keys] = deepClone(source[keys]);
-        } else {
-          targetObj[keys] = source[keys];
+  static deepClone(target) {
+    let copyed_objs = []; //此数组解决了循环引用和相同引用的问题，它存放已经递归到的目标对象 
+    function _deepCopy(target) {
+      if ((typeof target !== 'object') || !target) {
+        return target;
+      }
+      for (let i = 0; i < copyed_objs.length; i++) {
+        if (copyed_objs[i].target === target) {
+          return copyed_objs[i].copyTarget;
         }
       }
+      let obj = {};
+      if (Array.isArray(target)) {
+        obj = []; //处理target是数组的情况 
+      }
+      copyed_objs.push({
+        target: target,
+        copyTarget: obj
+      })
+      Object.keys(target).forEach(key => {
+        if (obj[key]) {
+          return;
+        }
+        obj[key] = _deepCopy(target[key]);
+      });
+      return obj;
     }
-    return targetObj;
+    return _deepCopy(target);
   }
 
 

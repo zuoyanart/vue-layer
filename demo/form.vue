@@ -71,8 +71,10 @@ export default {
   },
   props: {
     check: {
-      type: String,
-      default: "111"
+      type: Object,
+      default: () => {
+        return {};
+      }
     },
     layerid: {
       type: String,
@@ -100,7 +102,7 @@ export default {
     }
   },
   mounted() {
-    this.form.name = this.check;
+    this.form.name = this.check.a;
   }
 };
 </script>

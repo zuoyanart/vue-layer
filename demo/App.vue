@@ -217,17 +217,20 @@ export default {
           content: formComp,
           parent: this,
           data: {
-            check: "aaaaaaaaxxxx",
+            check: { a: "aaaaaaaaxxxx" },
             fn: function () {
               alert(1);
             }
           }
         },
         area: ["900px", "600px"],
-        title: "",
+        title: '这是一个标题这是一个标题这是一个标题这是一个标题',
         maxmin: true,
-        shade: true,
+        shade: false,
         shadeClose: false,
+        cancel: () => {
+          alert(2110);
+        }
       });
     }
   }

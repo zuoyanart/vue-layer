@@ -10,17 +10,21 @@
     :style="getBaseStyle"
   >
     <h2 class="vl-notice-title" @mousedown="moveStart">
-      {{options.title}}
-      <i
-        class="vlayer vlicon-mini lv-icon-mini"
-        @click="mini"
-        v-if="options.maxmin === true && maxMiniState === 0"
-      ></i>
-      <i
-        class="vlayer vlicon-max lv-icon-max"
-        @click="maxmini"
-        v-if="options.maxmin === true && maxMiniState !== 0"
-      ></i>
+      <span v-html="options.title" class="lv-title"></span>
+      <template v-if="options.maxmin == true">
+        <span class="lv-icon-maxmini">
+          <template v-if="maxMiniState === 0">
+            <i class="vlayer vlicon-mini lv-icon-mini" @click="mini"></i>
+            <i class="vlayer vlicon-max lv-icon-max" @click="max"></i>
+          </template>
+          <template v-else-if="maxMiniState === 1">
+            <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
+          </template>
+          <template v-else-if="maxMiniState === 2">
+            <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
+          </template>
+        </span>
+      </template>
       <i class="icon-remove" @click="close"></i>
     </h2>
     <slot></slot>
@@ -85,8 +89,10 @@ export default {
       const op = this.options;
       const styleBase = { left: op.offset[0] + 'px', top: op.offset[1] + 'px', margin: op.offset[2], zIndex: this.zindex, width: op.area[0], height: op.area[1] };
       let a = helper.deepClone(styleBase);
-      console.log(a);
-      console.log(this.options.offset[0]);
+      console.log('a', a);
+      console.log('of', this.options.offset[0]);
+      console.log('s', this.addStyle);
+      console.log('mg', this.mergeJson(a, this.addStyle));
       return this.mergeJson(a, this.addStyle);
     }
   },
@@ -131,7 +137,7 @@ export default {
       await helper.btncancel(event, this.options);
       helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
     },
-    async mini() {//最小化窗口
+    mini() {//最小化窗口
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
@@ -143,6 +149,16 @@ export default {
       };
       this.maxMiniState = 1;
     },
+    max() {//最大化窗口
+      this.addStyle = {
+        overflow: "hidden",
+        left: '50%',
+        width: "100%",
+        height: document.documentElement.clientHeight + 'px',
+        minHeight: "43px",
+      };
+      this.maxMiniState = 2;
+    },
     maxmini() {
       document.getElementById(this.options.id).removeAttribute('style');
       this.addStyle = {
@@ -151,14 +167,6 @@ export default {
         margin: 't',
       };
       this.maxMiniState = 0;
-    },
-    async max() {//最小化窗口
-      this.addStyle = {
-        overflow: "hidden",
-        bottom: 0,
-        left: 0
-      };
-      this.maxMiniState = 2;
     },
     moveStart(event) {
       helper.moveStart(event, this.options);

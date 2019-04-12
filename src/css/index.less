@@ -97,6 +97,12 @@
       -moz-user-select: -moz-none;
       -webkit-user-select: none;
       margin: 0;
+      display: flex;
+
+      .lv-title {
+        text-overflow: ellipsis;
+        flex: 1;
+      }
 
       .icon-remove {
         position: absolute;
@@ -114,30 +120,33 @@
         }
       }
 
-      .lv-icon-max {
-        position: absolute;
-        right: 32px;
+      .lv-icon-maxmini {
+        // position: absolute;
+        // right: 32px;
+        //  top: 0px;
+        min-width: 10px;
         font-size: 14px;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-        top: 0px;
         font-weight: normal;
         cursor: pointer;
         color: rgb(51, 51, 51);
         font-style: normal;
+        margin-right: 25px;
 
+        i {
+          margin: 0 3px;
+          font-size: 14px;
+          text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+          font-weight: normal;
+          cursor: pointer;
+          color: rgb(51, 51, 51);
+          font-style: normal;
+        }
       }
 
-      .lv-icon-mini {
-        position: absolute;
-        right: 56px;
-        font-size: 14px;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-        top: 0px;
-        font-weight: normal;
-        cursor: pointer;
-        color: rgb(51, 51, 51);
-        font-style: normal;
-      }
+      .lv-icon-max {}
+
+      .lv-icon-mini {}
     }
 
     .vl-notify-content {
