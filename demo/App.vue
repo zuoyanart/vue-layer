@@ -226,7 +226,8 @@ export default {
         area: ["900px", "600px"],
         title: "",
         maxmin: true,
-        shade: false
+        shade: true,
+        shadeClose: false,
       });
     }
   }

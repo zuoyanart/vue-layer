@@ -6,8 +6,8 @@
 @Last modified by:   左盐
 @Last modified time: 2018-03-24 15:29:43
 -->
-<template lang="html">
-      <div class="vl-notify-mask" @click="close" :id="id + '_mask'" :style="setOpacity"></div>
+<template>
+  <div class="vl-notify-mask" @click="close" :id="id + '_mask'" :style="setOpacity"></div>
 </template>
 
 <script>

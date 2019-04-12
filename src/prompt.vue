@@ -6,17 +6,32 @@
 @Last modified by:   左盐
 @Last modified time: 2018-03-24 16:02:01
 -->
-<template lang="html">
-<div class="vl-notify vl-notify-main vl-notify-alert"  @mousemove="move" @mouseup="moveEnd"  :id="options.id" :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2]}" style="max-width:500px;">
-        <h2 class="vl-notice-title" @mousedown="moveStart">{{options.title}}<i class="icon-remove" @click="close"></i></h2>
-        <div class="vl-notify-content">
-          <input />
-        </div>
-        <div class="vl-notify-btns">
-            <pzbutton btn="primary" @click.native="btnyes" size="small">确定</pzbutton>
-            <pzbutton btn="default" @click.native="btncancel" size="small" v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'">取消</pzbutton>
-        </div>
-</div>
+<template>
+  <div
+    class="vl-notify vl-notify-main vl-notify-alert"
+    @mousemove="move"
+    @mouseup="moveEnd"
+    :id="options.id"
+    :style="{left:options.offset[0] + 'px',top:options.offset[1] +'px', margin:options.offset[2]}"
+    style="max-width:500px;"
+  >
+    <h2 class="vl-notice-title" @mousedown="moveStart">
+      {{options.title}}
+      <i class="icon-remove" @click="close"></i>
+    </h2>
+    <div class="vl-notify-content">
+      <input>
+    </div>
+    <div class="vl-notify-btns">
+      <pzbutton btn="primary" @click.native="btnyes" size="small">确定</pzbutton>
+      <pzbutton
+        btn="default"
+        @click.native="btncancel"
+        size="small"
+        v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'"
+      >取消</pzbutton>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,7 +49,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }

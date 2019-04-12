@@ -6,10 +6,8 @@
 @Last modified by:   左盐
 @Last modified time: 2018-03-24 12:23:04
 -->
-<template lang="html">
-
-<label :id="options.id"  class="vl-notify vl-notify-msg" v-html="options.content"></label>
-
+<template>
+  <label :id="options.id" class="vl-notify vl-notify-msg" v-html="options.content"></label>
 </template>
 
 <script>
@@ -23,7 +21,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {}
       }
     }
