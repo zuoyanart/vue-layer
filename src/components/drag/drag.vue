@@ -89,10 +89,6 @@ export default {
       const op = this.options;
       const styleBase = { left: op.offset[0] + 'px', top: op.offset[1] + 'px', margin: op.offset[2], zIndex: this.zindex, width: op.area[0], height: op.area[1] };
       let a = helper.deepClone(styleBase);
-      console.log('a', a);
-      console.log('of', this.options.offset[0]);
-      console.log('s', this.addStyle);
-      console.log('mg', this.mergeJson(a, this.addStyle));
       return this.mergeJson(a, this.addStyle);
     }
   },
