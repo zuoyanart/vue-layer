@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/dw/vue-layer.svg?style=flat-square)](https://www.npmjs.com/package/vue-layer)
+[![npm](https://img.shields.io/bundlephobia/minzip/vue-layer.svg)](https://www.npmjs.com/package/vue-layer)
+[![npm](https://img.shields.io/github/package-json/v/zuoyanart/vue-layer.svg)](https://www.npmjs.com/package/vue-layer)
+[![npm](https://img.shields.io/npm/l/vue-layer.svg)](https://www.npmjs.com/package/vue-layer)
 ## vue-layer
 install
 ```shell
