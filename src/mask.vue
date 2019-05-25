@@ -37,11 +37,27 @@ export default {
         return {
           opacity: 0
         };
+      }else if(this.type == 2){
+        //iframe层级 需要给遮罩层设置z-index
+        return {
+          "z-index":parseInt(this.getStyle(this.id, "z-index"))-1
+        }
       }
       return {};
     }
   },
   methods: {
+    getStyle(el, styleProp) {
+      var x = document.getElementById(el);
+      if (window.getComputedStyle) {
+        var y = document.defaultView
+          .getComputedStyle(x, null)
+          .getPropertyValue(styleProp);
+      } else if (x.currentStyle) {
+        var y = x.currentStyle[styleProp];
+      }
+      return y;
+    },
     close(event) {
       if (this.shadeClose) {
         helper.clickMaskCloseAll(event, this.layer, this.id);
