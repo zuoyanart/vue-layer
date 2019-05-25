@@ -86,6 +86,8 @@ export default {
   },
   computed: {
     getBaseStyle() {
+      //获取z-index
+      this.resetZIndex();
       const op = this.options;
       const styleBase = { left: op.offset[0] + 'px', top: op.offset[1] + 'px', margin: op.offset[2], zIndex: this.zindex, width: op.area[0], height: op.area[1] };
       let a = helper.deepClone(styleBase);
@@ -127,7 +129,8 @@ export default {
       if (domZindex == max && max != 500) {
         return;
       }
-      this.zindex = max + 1;
+      //预留遮罩层z-index
+      this.zindex = max + 2;
     },
     async close(event) {
       await helper.btncancel(event, this.options);
