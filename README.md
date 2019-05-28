@@ -47,6 +47,7 @@ this.$layer.alert("找不到对象！");
   tipsMore: false,//是否允许多个tips
   shadeClose: true,//点击遮罩是否关闭
   maxmin: true,//开启最大化最小化
+  closeBtn:true //弹层关闭按钮是否显示
 }
 ```
 ## Method
