@@ -25,7 +25,7 @@
           </template>
         </span>
       </template>
-      <i class="icon-remove" @click="close"></i>
+      <i v-if="options.closeBtn == true" class="icon-remove" @click="close"></i>
     </h2>
     <slot></slot>
   </div>
