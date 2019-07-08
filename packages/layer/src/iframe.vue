@@ -51,7 +51,7 @@ export default {
   methods: {
     async getContent() {
       await helper.sleep(10);
-      let propsData = helper.deepClone(this.options.content.data);
+      let propsData = helper.deepClone(this.options.content.data) || {};
       propsData["layerid"] = this.options.id;
       let instance = new this.options.content.content({
         //具体参数信息，请参考vue源码

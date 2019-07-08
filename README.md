@@ -56,13 +56,27 @@ this.$layer.alert("找不到对象！");
  layer.alert(content, [options, yes]);
  // options和yes可以省略， 如果您不愿意写options，则可以直接写确定按钮的函数，即yes
  // content 可以为html
+ //yes如果是个function，这会自动添加参数layerid，
+ (layerid)=>{
+   this.$layer.close(layerid);
+ }
 ```
 
 ```js
  layer.confirm(content, [options, yes, cancel]);
   // options，yes和cancel可以省略， 如果您不愿意写options，则可以直接写确定按钮的函数，即yes，或者覆盖默认的cancel方法。PS：yes和cancel方法不能互换
   //content 可以为html
+   //yes,cancel如果是个function，这会自动添加参数layerid，
+ (layerid)=>{
+   this.$layer.close(layerid);
+ }
 ```
+
+```js
+ layer.loadding(option);
+  // options ={time:3}，3秒自动关闭
+```
+
 ```js
  layer.msg(content, [options, end]);
  // options和end可以省略， 如果您不愿意写options，则可以直接写时间到期的回调即可，即end方法
@@ -133,3 +147,6 @@ methods:{
 
 ### 样式调整
 该包的css都为vl-notice开头， 需要重写css样式，覆盖即可
+
+### 觉的作者付出的时间和精力有价值，就给作者买杯咖啡吧
+ <img src="./wx.jpg" width="300" height="300" />

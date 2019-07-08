@@ -38,6 +38,7 @@
         @click.native="btncancel"
         size="small"
         v-if="typeof(options.cancel) == 'function' || options.cancel=='cancel'"
+        style="margin-left:10px;"
       >{{btns[1]}}</pzbutton>
     </div>
   </base-drag>

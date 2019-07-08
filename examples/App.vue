@@ -9,23 +9,97 @@
     <el-button type="primary" @click="msg1Handle">带回调</el-button>
     <h2 class="title">loading</h2>
     <el-button type="primary" @click="loadingHandle">默认样式</el-button>
+    <h2 class="title">prompt</h2>
+    <el-button type="primary" @click="promptHandle">弹出</el-button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2 class="title">tips</h2>
+    <el-button type="primary" id="tips" @click="tipsHandle">上</el-button>
+    <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle">右</el-button>
+    <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
+    <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
+    <h2 class="title">page</h2>
+    <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
+    <br />
+    <br />
+    <h2 class="title">表格测试</h2>
+    <el-table :data="tableData" style="width: 100%" border>
+      <el-table-column label="日期" width="180">
+        <template slot-scope="scope">
+          <i class="el-icon-time"></i>
+          <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="姓名" width="180">
+        <template slot-scope="scope">
+          <el-popover trigger="hover" placement="top">
+            <p>姓名: {{ scope.row.name }}</p>
+            <p>住址: {{ scope.row.address }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag size="medium">{{ scope.row.name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="submitHandle(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="confirmHandle(scope.$index, scope.row)">删除</el-button>
+          <el-button type="primary" id="tipst" @click="tipstHandle">上</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 
+import formComp from "./form.vue";
 export default {
   name: 'app',
+  data() {
+    return {
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }]
+    }
+  },
   methods: {
     submitHandle() {
       this.$layer.alert(
-        "this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!<br/>this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
+        "这是个演示，this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!this is demo!!!",
         {
           shade: true,
-          icon: 2
+          icon: 3,
+          title: 'dd'
         },
-        index => {
-          this.$layer.close(index);
+        laeryid => {
+          this.$layer.close(laeryid);
         }
       );
     },
@@ -37,19 +111,20 @@ export default {
           btn: ["asd", "4545"],
           icon: 3
         },
-        () => {
+        (layerid) => {
           // this.$layer.msg("执行了删除");
-          // this.$layer.close(id);
-          this.$layer.alert(1);
+          alert(layerid);
+          this.$layer.close(layerid);
         },
-        () => {
+        (layerid) => {
           this.$layer.msg("执行取消");
-          this.$layer.close(id);
+          this.$layer.close(layerid);
+
         }
       );
     },
     msgHandle() {
-      let id = this.$layer.msg("弱弱的提示");
+      this.$layer.msg("弱弱的提示");
     },
     msg1Handle() {
       let id = this.$layer.msg(
@@ -57,7 +132,8 @@ export default {
         {
           time: 5
         },
-        () => {
+        (layerid) => {
+          alert(layerid);
           this.$layer.close(id);
         }
       );
@@ -72,13 +148,13 @@ export default {
       this.$layer.prompt("你好");
     },
     tipsHandle() {
-      let id = this.$layer.tips("在很久很久以前", "#tips", {
+      this.$layer.tips("在很久很久以前", "#tips", {
         tips: 0,
         time: 100
       });
     },
     tips1Handle() {
-      let id = this.$layer.tips(
+      this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips1",
         {
@@ -88,7 +164,7 @@ export default {
       );
     },
     tips2Handle() {
-      let id = this.$layer.tips(
+      this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips2",
         {
@@ -97,7 +173,7 @@ export default {
       );
     },
     tips3Handle() {
-      let id = this.$layer.tips(
+      this.$layer.tips(
         "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
         "#tips3",
         {
@@ -111,17 +187,27 @@ export default {
         }
       );
     },
+    tipstHandle() {
+      this.$layer.tips(
+        "在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，在很久很久以前，",
+        "#tipst",
+        {
+          tips: [
+            3,
+            {
+              selfa: true
+            }
+          ],
+          time: 10
+        }
+      );
+    },
     pageHandle() {
-      let ids = this.$layer.iframe({
+      this.$layer.iframe({
         content: {
           content: formComp,
           parent: this,
-          data: {
-            check: { a: "aaaaaaaaxxxx" },
-            fn: () => {
-              alert(1);
-            }
-          }
+
         },
         area: ["900px", "600px"],
         title: '这是一个标题这是一个标题这是一个标题这是一个标题',
@@ -142,8 +228,7 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px 300px;
 }
 </style>

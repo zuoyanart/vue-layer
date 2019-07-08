@@ -70,7 +70,8 @@ export default {
     async getOffset() {
       await this.sleep(1);
       let o = document.querySelector(this.options.title); //用title传递that元素
-      let bound = o.getBoundingClientRect();
+      const bound = o.getBoundingClientRect();
+      console.warn('bound', bound);
       let oTips = document.querySelector("#" + this.options.id);
       let boundTips = oTips.getBoundingClientRect();
 
@@ -78,6 +79,10 @@ export default {
       let left = o.offsetLeft;
       let top = o.offsetTop - scrollTop;
       let jiantou = 8 + 1;
+      while (o = o.offsetParent) {
+        left += o.offsetLeft;
+        top += o.offsetTop;
+      }
 
 
       let offset = {};

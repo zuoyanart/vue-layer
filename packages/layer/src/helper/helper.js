@@ -38,7 +38,7 @@ export default class helper {
    */
   static async btncancel(event, options) {
     if (typeof (options.cancel) == "function") {
-      await options.cancel();
+      await options.cancel(options.id);
     } else {
       options.layer.close(options.id);
     }
