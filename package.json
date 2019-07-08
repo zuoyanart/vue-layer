@@ -1,57 +1,51 @@
 {
-  "name": "vue-layer",
-  "version": "0.9.13",
-  "description": "vue layer component",
-  "main": "./dist/vue-layer.js",
+  "name": "vuelib",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "webpack --config ./build/webpack.prod.conf.js --colors",
-    "dev": "node build/dev-server.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name vue-layer --dest lib packages/layer/index.js",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "file-loader": "^2.0.0"
+
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-runtime": "^6.12.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "connect-history-api-fallback": "^1.3.0",
-    "css-loader": "^0.23.1",
-    "element-ui": "^2.7.2",
-    "eventsource-polyfill": "^0.9.6",
-    "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.24.1",
-    "http-proxy-middleware": "^0.17.3",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
-    "opn": "^4.0.2",
-    "superagent": "^3.5.1",
+    "element-ui": "^2.10.1",
+    "core-js": "^2.6.5",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.3",
-    "vue-html-loader": "^1.2.3",
-    "vue-loader": "^8.5.3",
-    "vue-style-loader": "^1.0.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.13.2",
-    "webpack-merge": "^1.1.2"
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zuoyanart/vue-layer.git"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
   },
-  "keywords": [
-    "vue",
-    "layer",
-    "vue-layer",
-    "zuoyan"
-  ],
-  "author": "左盐",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zuoyanart/vue-layer/issues"
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   },
-  "homepage": "http://vue.zuoyan.space/"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
