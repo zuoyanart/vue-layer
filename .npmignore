@@ -1,5 +1,6 @@
 node_modules
 *.json.gizp
+*.map
 tmp
 temp
 /examples/

@@ -14,13 +14,15 @@ npm install vue-layer
 ```js
 import Vue from 'vue';
 import layer from 'vue-layer'
-Vue.prototype.$layer = layer(Vue);
+import 'vue-layer/lib/vue-layer.css';
+
+Vue.prototype.$layer = layer();
 ```
 全局参数重置
 ```js
 import Vue from 'vue';
 import layer from 'vue-layer'
-Vue.prototype.$layer = layer(Vue, {
+Vue.prototype.$layer = layer({
     msgtime: 3,//目前只有一项，即msg方法的默认消失时间，单位：秒
 });
 ```

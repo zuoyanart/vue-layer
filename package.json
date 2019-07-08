@@ -1,13 +1,15 @@
 {
   "name": "vue-layer",
   "version": "0.9.12",
-  "private": true,
+  "description": "vue layer component",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lib": "vue-cli-service build --target lib --name vue-layer --dest lib packages/layer/index.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "./lib/vue-layer.umd.min.js",
   "dependencies": {
 
   },
@@ -58,7 +60,7 @@
     "vue-layer",
     "zuoyan"
   ],
-  "author": "左盐",
+  "author": "左盐/huabinglan@163.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zuoyanart/vue-layer/issues"
