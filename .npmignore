@@ -2,11 +2,8 @@ node_modules
 *.json.gizp
 tmp
 temp
-/build/
-/config/
-/demo/
-/temp/
-/src/
-index.js
-utils.js
-webpack.config.js
+/examples/
+/packages/
+/public/
+babel.config.js
+vue.config.js

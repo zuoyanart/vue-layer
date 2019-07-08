@@ -1,6 +1,6 @@
 {
-  "name": "vuelib",
-  "version": "0.1.0",
+  "name": "vue-layer",
+  "version": "0.9.12",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -47,5 +47,20 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuoyanart/vue-layer.git"
+  },
+  "keywords": [
+    "vue",
+    "layer",
+    "vue-layer",
+    "zuoyan"
+  ],
+  "author": "左盐",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zuoyanart/vue-layer/issues"
+  }
 }
