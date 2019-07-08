@@ -6,10 +6,9 @@
  * @Last modified time: 2018-03-31 10:39:54
  */
 
-import Vue from 'vue';
 import layerVue from './layer.vue';
 import maskVue from './mask.vue';
-let Notification = (function (globalOption = {
+let Notification = (function (Vue, globalOption = {
   msgtime: 1.5, //msg消失时间
 }) {
   let NotificationConstructor = Vue.extend(layerVue);
