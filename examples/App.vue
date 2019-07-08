@@ -56,7 +56,7 @@
         <template slot-scope="scope">
           <el-button size="mini" @click="submitHandle(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="confirmHandle(scope.$index, scope.row)">删除</el-button>
-          <el-button type="primary" id="tipst" @click="tipstHandle">上</el-button>
+          <el-button type="primary" id="tipst" @click="tipstHandle" size="mini">上</el-button>
         </template>
       </el-table-column>
     </el-table>

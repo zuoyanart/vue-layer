@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "0.9.12",
+  "version": "0.9.14",
   "description": "vue layer component",
   "private": false,
   "scripts": {

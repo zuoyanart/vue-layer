@@ -55,8 +55,6 @@ let Notification = (function (globalOption = {
       options.content.content = Vue.extend(options.content.content);
     }
     instance.id = id;
-    console.log(instance);
-    console.log(instance.$el);
     instance.vm = instance.$mount();
     self.instances[id] = {
       inst: instance,
