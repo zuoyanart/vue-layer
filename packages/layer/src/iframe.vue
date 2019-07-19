@@ -22,13 +22,13 @@ export default {
       cls: {
         "vl-notify-iframe": true
       },
-      id: "vlip" + new Date().getTime(),
+      id: "vlip" + new Date().getTime()
     };
   },
   props: {
     options: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
     }
@@ -53,6 +53,7 @@ export default {
       await helper.sleep(10);
       let propsData = helper.deepClone(this.options.content.data) || {};
       propsData["layerid"] = this.options.id;
+      propsData["layerData"] = this.options.content.data; //原始的值，可以直接被修改，用来同步数据
       let instance = new this.options.content.content({
         //具体参数信息，请参考vue源码
         parent: this.options.content.parent,
@@ -68,8 +69,7 @@ export default {
     },
     btncancel(event) {
       helper.btncancel(event, this.options);
-    },
-
+    }
   }
 };
 </script>

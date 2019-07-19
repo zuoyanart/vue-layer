@@ -143,19 +143,23 @@ export default {
         bottom: 0,
         left: "130px",
         width: "100px",
-        height: "43px",
-        minHeight: "43px",
+        height: "42px",
+        minHeight: "42px",
         top: 'auto'
       };
       this.maxMiniState = 1;
     },
     max() {//最大化窗口
+      let height = document.documentElement.clientHeight;
+      if(height%2===1){
+        height += 1;
+      }
       this.addStyle = {
         overflow: "hidden",
         left: '50%',
         width: "100%",
-        height: document.documentElement.clientHeight + 'px',
-        minHeight: "43px",
+        height: height + 'px',
+        minHeight: "42px",
       };
       this.maxMiniState = 2;
     },
