@@ -49,14 +49,14 @@ export default {
       ];
       return comps[this.$data.type];
     },
-    isMsg: function () {
+    isMsg: function() {
       return this.type == 5 ? true : false;
     },
-    isTips: function () {
+    isTips: function() {
       return this.type == 4 ? true : false;
     }
   },
-  mounted() { },
+  mounted() {},
   methods: {},
   watch: {},
   components: {
@@ -72,6 +72,6 @@ export default {
 </script>
 
 <style lang="less">
-@import "https://at.alicdn.com/t/font_1035225_bik3jpzfhs7.css";
+@import "./css/iconfont.css";
 @import "./css/index.less";
 </style>

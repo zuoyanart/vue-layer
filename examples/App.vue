@@ -64,30 +64,34 @@
 </template>
 
 <script>
-
 import formComp from "./form.vue";
 export default {
-  name: 'app',
+  name: "app",
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
-    }
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄"
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄"
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄"
+        }
+      ]
+    };
   },
   methods: {
     submitHandle() {
@@ -96,7 +100,7 @@ export default {
         {
           shade: true,
           icon: 3,
-          title: 'dd'
+          title: "dd"
         },
         laeryid => {
           this.$layer.close(laeryid);
@@ -111,17 +115,17 @@ export default {
           btn: ["asd", "4545"],
           icon: 3
         },
-        (layerid) => {
+        layerid => {
           // this.$layer.msg("执行了删除");
           alert(layerid);
           this.$layer.close(layerid);
         },
-        (layerid) => {
+        layerid => {
           this.$layer.msg("执行取消");
           this.$layer.close(layerid);
-
         }
       );
+      return id;
     },
     msgHandle() {
       this.$layer.msg("弱弱的提示");
@@ -132,7 +136,7 @@ export default {
         {
           time: 5
         },
-        (layerid) => {
+        layerid => {
           alert(layerid);
           this.$layer.close(id);
         }
@@ -206,11 +210,10 @@ export default {
       this.$layer.iframe({
         content: {
           content: formComp,
-          parent: this,
-
+          parent: this
         },
         area: ["900px", "600px"],
-        title: '这是一个标题这是一个标题这是一个标题这是一个标题',
+        title: "这是一个标题这是一个标题这是一个标题这是一个标题",
         maxmin: true,
         shade: false,
         shadeClose: false,
@@ -220,7 +223,7 @@ export default {
       });
     }
   }
-}
+};
 </script>
 
 <style>
