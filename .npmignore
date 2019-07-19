@@ -8,3 +8,6 @@ temp
 /public/
 babel.config.js
 vue.config.js
+*.jpg
+.eslintignore
+
