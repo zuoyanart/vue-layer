@@ -29,7 +29,12 @@
       <i class="icon-remove" @click="close"></i>
     </h2>
     <slot></slot>
-    <span class="vl-drag-resize" @mousedown="resizeHand" @mouseup="resizeHandMoveEnd"></span>
+    <span
+      class="vl-drag-resize"
+      @mousedown="resizeHand"
+      @mouseup="resizeHandMoveEnd"
+      v-if="options.resize"
+    ></span>
   </div>
 </template>
 <script>

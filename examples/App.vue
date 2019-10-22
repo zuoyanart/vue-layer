@@ -220,6 +220,7 @@ export default {
         shade: true,
         shadeClose: false,
         scrollbar: false,
+        resize: true,
         cancel: () => {
           alert(2110);
         }
