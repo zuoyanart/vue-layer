@@ -47,6 +47,7 @@ export default {
   },
   async mounted() {
     this.getContent();
+    helper.hiddenScrollBar(this.options);
   },
   methods: {
     async getContent() {

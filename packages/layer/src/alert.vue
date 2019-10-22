@@ -61,7 +61,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
     }
@@ -87,6 +87,7 @@ export default {
   async mounted() {
     await helper.sleep(20);
     this.formatBtnText();
+    helper.hiddenScrollBar(this.options);
   },
   components: {
     pzbutton,

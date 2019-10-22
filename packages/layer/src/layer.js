@@ -29,7 +29,8 @@ let Notification = (function (Vue, globalOption = {
     cancel: '',
     tips: [0, {}], //支持上右下左四个方向，通过1-4进行方向设定,可以设定tips: [1, '#c00']
     tipsMore: false, //是否允许多个tips
-    shadeClose: true
+    shadeClose: true,
+    scrollbar: true //是否允许浏览器出现滚动条:默认是允许
   };
   self.instances = {};
   self.instancesVue = [];
@@ -66,10 +67,12 @@ let Notification = (function (Vue, globalOption = {
       'iframe': '',
     }
     if (options.shade) { //是否显示遮罩
-      // let layerMask = document.querySelector('.vl-notify-mask');
-      // if (layerMask) {
-      //   document.body.removeChild(layerMask);
-      // }
+      let layerMask = document.querySelector('.vl-notify-mask');
+      if (layerMask) {
+        return;
+        // document.body.removeChild(layerMask);
+      }
+
       let maskInstance = new maskLayer({
         data: options
       });
@@ -251,13 +254,13 @@ let Notification = (function (Vue, globalOption = {
    */
   self.close = function (id) {
     let oElm = document.getElementById(id);
-    let layerMask = document.getElementById(id + '_mask');
-    if (layerMask) {
-      document.body.removeChild(layerMask);
-      if (self.instancesVue[id].mask) {
-        self.instancesVue[id].mask.$destroy();
-      }
-    }
+    // let layerMask = document.getElementById(id + '_mask');
+    // if (layerMask) {
+    //   document.body.removeChild(layerMask);
+    //   if (self.instancesVue[id].mask) {
+    //     self.instancesVue[id].mask.$destroy();
+    //   }
+    // }
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];
@@ -265,6 +268,38 @@ let Notification = (function (Vue, globalOption = {
       if (self.instancesVue[id].iframe != '') {
         self.instancesVue[id].iframe.$destroy();
       }
+      //取消隐藏滚动条
+      if (!self.instancesVue[id].main.scrollbar) {
+        let scrollbarCount = 0;
+        for (let key in self.instancesVue) {
+          if (!self.instancesVue[key].main.scrollbar) {
+            scrollbarCount++;
+          }
+        }
+        if (scrollbarCount === 1) {
+          const htmlDom = document.getElementsByTagName("html")[0];
+          htmlDom.style.marginRight = "auto";
+          htmlDom.classList.remove('vl-html-scrollbar-hidden');
+        }
+      }
+      //控制遮罩
+      if (self.instancesVue[id].main.shade) {
+        let domCount = 0;
+        for (let key in self.instancesVue) {
+          if (self.instancesVue[key].main.shade) {
+            domCount++;
+          }
+        }
+        if (domCount === 1) {
+          let layerMask = document.getElementsByClassName('vl-notify-mask')[0];
+          let maskId = layerMask.getAttribute('id').replace('_mask', '');
+          document.body.removeChild(layerMask);
+          if (self.instancesVue[maskId]) {
+            self.instancesVue[maskId].mask.$destroy();
+          }
+        }
+      }
+      delete self.instancesVue[id];
     } else {
       setTimeout(function () {
         let oElm = document.getElementById(id);

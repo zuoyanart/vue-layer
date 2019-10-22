@@ -44,6 +44,25 @@ export default class helper {
     }
   }
   /**
+   * 隐藏滚动条
+   */
+  static hiddenScrollBar(options) {
+    if (!options.scrollbar) {
+      const htmlDom = document.getElementsByTagName("html")[0];
+      const htmlClass = [...htmlDom.classList];
+      if (htmlClass.indexOf('vl-html-scrollbar-hidden') > -1) {
+        return;
+      }
+
+      const htmlWidth = htmlDom.offsetWidth;
+      //隐藏滚动条
+      // htmlDom.style.overflowY = "hidden";
+      htmlDom.classList.add("vl-html-scrollbar-hidden");
+      const htmlWidthH = htmlDom.offsetWidth;
+      htmlDom.style.marginRight = htmlWidthH - htmlWidth + "px";
+    }
+  }
+  /**
    * 鼠标拖动弹窗
    * @param  {[type]} event   [description]
    * @param  {[type]} options [description]

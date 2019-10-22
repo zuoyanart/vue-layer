@@ -41,19 +41,19 @@ export default {
       id: "vlip" + new Date().getTime(),
       zindex: 1,
       addStyle: {},
-      maxMiniState: 0,//0normal,1mini,2max
+      maxMiniState: 0 //0normal,1mini,2max
     };
   },
   props: {
     options: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
     },
     cls: {
       type: Object,
-      default: function () {
+      default: function() {
         return {
           "vl-notify-alert": true
         };
@@ -65,12 +65,12 @@ export default {
       await helper.sleep(20);
       //是否显示遮罩
       document
-        .getElementById(this.options.id + "_mask")
+        .getElementsByClassName("vl-notify-mask")[0]
         .addEventListener("mousemove", event => {
           this.move(event);
         });
       document
-        .getElementById(this.options.id + "_mask")
+        .getElementsByClassName("vl-notify-mask")[0]
         .addEventListener("mouseup", event => {
           this.moveEnd(event);
         });
@@ -89,7 +89,14 @@ export default {
       //获取z-index
       this.resetZIndex();
       const op = this.options;
-      const styleBase = { left: op.offset[0] + 'px', top: op.offset[1] + 'px', margin: op.offset[2], zIndex: this.zindex, width: op.area[0], height: op.area[1] };
+      const styleBase = {
+        left: op.offset[0] + "px",
+        top: op.offset[1] + "px",
+        margin: op.offset[2],
+        zIndex: this.zindex,
+        width: op.area[0],
+        height: op.area[1]
+      };
       let a = helper.deepClone(styleBase);
       return this.mergeJson(a, this.addStyle);
     }
@@ -116,7 +123,7 @@ export default {
     resetZIndex() {
       let max = 500;
       let keys = Object.keys(this.cls);
-      let doms = document.querySelectorAll("." + keys[0]);//vl-notify-iframe
+      let doms = document.querySelectorAll("." + keys[0]); //vl-notify-iframe
       let domZindex = 0;
       for (let i = 0, len = doms.length; i < len; i++) {
         let value = parseInt(this.getStyle(doms[i].id, "z-index"));
@@ -137,7 +144,8 @@ export default {
       await helper.btncancel(event, this.options);
       helper.clickMaskCloseAll(event, this.options.layer, this.options.id);
     },
-    mini() {//最小化窗口
+    mini() {
+      //最小化窗口
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
@@ -145,30 +153,31 @@ export default {
         width: "100px",
         height: "42px",
         minHeight: "42px",
-        top: 'auto'
+        top: "auto"
       };
       this.maxMiniState = 1;
     },
-    max() {//最大化窗口
+    max() {
+      //最大化窗口
       let height = document.documentElement.clientHeight;
-      if(height%2===1){
+      if (height % 2 === 1) {
         height += 1;
       }
       this.addStyle = {
         overflow: "hidden",
-        left: '50%',
+        left: "50%",
         width: "100%",
-        height: height + 'px',
-        minHeight: "42px",
+        height: height + "px",
+        minHeight: "42px"
       };
       this.maxMiniState = 2;
     },
     maxmini() {
-      document.getElementById(this.options.id).removeAttribute('style');
+      document.getElementById(this.options.id).removeAttribute("style");
       this.addStyle = {
-        left: 'tpx',
-        top: 'tpx',
-        margin: 't',
+        left: "tpx",
+        top: "tpx",
+        margin: "t"
       };
       this.maxMiniState = 0;
     },
@@ -185,18 +194,22 @@ export default {
         let docOffsetHeight = o.offsetHeight / 2;
         let left = this.options.offset[0] + (event.clientX - this.moveLeft);
         let docOffsetWidth = o.offsetWidth / 2;
-        if (top <= docOffsetHeight) {//顶部边界
+        if (top <= docOffsetHeight) {
+          //顶部边界
           top = docOffsetHeight;
         }
-        if (left <= docOffsetWidth) {//左侧边界
+        if (left <= docOffsetWidth) {
+          //左侧边界
           left = docOffsetWidth;
         }
         let docHeight = document.documentElement.clientHeight;
         let docWidth = document.documentElement.clientWidth;
-        if (top >= docHeight - docOffsetHeight) {//底部边界
+        if (top >= docHeight - docOffsetHeight) {
+          //底部边界
           top = docHeight - docOffsetHeight;
         }
-        if (left >= docWidth - docOffsetWidth) {//右部边界
+        if (left >= docWidth - docOffsetWidth) {
+          //右部边界
           left = docWidth - docOffsetWidth;
         }
         o.style.left = left + "px";
@@ -208,7 +221,7 @@ export default {
       this.ismove = false;
     }
   }
-}
+};
 </script>
 
 <style>

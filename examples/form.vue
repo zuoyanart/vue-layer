@@ -82,7 +82,7 @@ export default {
     },
     fn: {
       type: Function,
-      default: function () { }
+      default: function() {}
     }
   },
   methods: {
@@ -94,6 +94,9 @@ export default {
       // console.log(this.$parent);
       // console.log(this.form);
       this.$layer.msg("aaaa");
+      this.$layer.alert("asdasd", {
+        scrollbar: false
+      });
       // this.$parent.$emit('asd', 'kkk');
     },
     quxiao() {

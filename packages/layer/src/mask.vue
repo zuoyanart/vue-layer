@@ -41,7 +41,7 @@ export default {
         //iframe层级 需要给遮罩层设置z-index
         return {
           "z-index": parseInt(this.getStyle(this.id, "z-index")) - 1
-        }
+        };
       }
       return {};
     }
@@ -51,11 +51,11 @@ export default {
       let x = document.getElementById(el);
       let y = 0;
       if (window.getComputedStyle) {
-         y = document.defaultView
+        y = document.defaultView
           .getComputedStyle(x, null)
           .getPropertyValue(styleProp);
       } else if (x.currentStyle) {
-         y = x.currentStyle[styleProp];
+        y = x.currentStyle[styleProp];
       }
       return y;
     },
@@ -64,7 +64,8 @@ export default {
         helper.clickMaskCloseAll(event, this.layer, this.id);
       }
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 

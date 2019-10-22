@@ -143,10 +143,12 @@ export default {
       );
     },
     loadingHandle() {
-      let id = this.$layer.loading({
-        time: 3
-      });
-      return id;
+      for (let i = 0; i < 10; i++) {
+        console.log("i=", i);
+        this.$layer.loading({
+          time: i + 3
+        });
+      }
     },
     promptHandle() {
       this.$layer.prompt("你好");
@@ -215,8 +217,9 @@ export default {
         area: ["900px", "600px"],
         title: "这是一个标题这是一个标题这是一个标题这是一个标题",
         maxmin: true,
-        shade: false,
+        shade: true,
         shadeClose: false,
+        scrollbar: false,
         cancel: () => {
           alert(2110);
         }
@@ -232,6 +235,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin: 60px 300px;
+  margin: 60px auto;
+  width: 1000px;
 }
 </style>
