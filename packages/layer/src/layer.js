@@ -31,7 +31,7 @@ let Notification = (function (Vue, globalOption = {
     tipsMore: false, //是否允许多个tips
     shadeClose: true,
     scrollbar: true, //是否允许浏览器出现滚动条:默认是允许
-    resize: true //是否允许拉伸，默认是允许
+    resize: false //是否允许拉伸，默认是不允许
   };
   self.instances = {};
   self.instancesVue = [];
