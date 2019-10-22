@@ -72,6 +72,7 @@
   .vl-notify-content {
     min-height: 65px;
     padding: 20px;
+    max-height: calc(100% - 42px);
 
     iframe {
       width: 100%;
@@ -300,5 +301,17 @@
       right: -8px;
       top: 0;
     }
+  }
+
+  .vl-drag-resize {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: fixed;
+    right: 0px;
+    bottom: 0;
+    z-index: 100000;
+    cursor: nw-resize;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='17' height='17'%3E%3Cpath d='M765.558 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 202.54a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM66.77700000000002 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0z' fill='%23BFBFBF'/%3E%3C/svg%3E") no-repeat center;
   }
 }

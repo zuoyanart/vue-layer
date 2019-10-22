@@ -4,6 +4,7 @@
     :class="cls"
     @mousemove="move"
     @mouseup="moveEnd"
+    @mouseout="moveEnd"
     @focus="resetZIndex"
     tabindex="1"
     :id="options.id"
@@ -28,6 +29,7 @@
       <i class="icon-remove" @click="close"></i>
     </h2>
     <slot></slot>
+    <span class="vl-drag-resize" @mousedown="resizeHand" @mouseup="resizeHandMoveEnd"></span>
   </div>
 </template>
 <script>
@@ -41,7 +43,15 @@ export default {
       id: "vlip" + new Date().getTime(),
       zindex: 1,
       addStyle: {},
-      maxMiniState: 0 //0normal,1mini,2max
+      maxMiniState: 0, //0normal,1mini,2max
+      resize: {
+        isResize: false,
+        oWidth: 0,
+        oHeight: 0,
+        moveLeft: 0,
+        moveTop: 0,
+        tt: {}
+      }
     };
   },
   props: {
@@ -219,6 +229,41 @@ export default {
     },
     moveEnd() {
       this.ismove = false;
+    },
+    resizeHand(event) {
+      //拉伸操作
+      let o = document.getElementById(this.options.id + "");
+      this.resize.oWidth = o.offsetWidth;
+      this.resize.oHeight = o.offsetHeight;
+      this.resize.moveTop = event.clientY;
+      this.resize.moveLeft = event.clientX;
+      this.resize.isResize = true;
+      document.body.addEventListener("mousemove", e => {
+        this.resizeHandMove(e);
+      });
+    },
+    resizeHandMove(event) {
+      if (this.resize.isResize) {
+        let o = document.getElementById(this.options.id + "");
+        let top = event.clientY;
+        let left = event.clientX;
+        let oWidth = this.resize.oWidth + (left - this.resize.moveLeft) * 2;
+        let oHeight = this.resize.oHeight + (top - this.resize.moveTop) * 2;
+
+        if (oWidth < 200 || oHeight < 200) {
+          return;
+        }
+        o.style.width = oWidth + "px";
+        o.style.height = oHeight + "px";
+      }
+    },
+    resizeHandMoveEnd() {
+      setTimeout(() => {
+        this.resize.isResize = false;
+        document.body.removeEventListener("mousemove", e => {
+          this.resizeHandMove(e);
+        });
+      }, 50);
     }
   }
 };
