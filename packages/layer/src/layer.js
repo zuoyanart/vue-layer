@@ -46,7 +46,7 @@ let Notification = (function (Vue, globalOption = {
    */
   self.open = function (options) {
     options = mergeJson(options, defOptions);
-    let id = `notification_${new Date().getTime()}_${  seed++}`;
+    let id = `notification_${new Date().getTime()}_${seed++}`;
     options.id = id;
     options.layer = self;
     let instance = new NotificationConstructor({
@@ -70,16 +70,17 @@ let Notification = (function (Vue, globalOption = {
     if (options.shade) { //是否显示遮罩
       let layerMask = document.querySelector('.vl-notify-mask');
       if (layerMask) {
-        return;
+        // return;
         // document.body.removeChild(layerMask);
-      }
+      } else {
 
-      let maskInstance = new maskLayer({
-        data: options
-      });
-      maskInstance.vm = maskInstance.$mount();
-      document.body.appendChild(maskInstance.vm.$el);
-      self.instancesVue[id].mask = maskInstance.vm;
+        let maskInstance = new maskLayer({
+          data: options
+        });
+        maskInstance.vm = maskInstance.$mount();
+        document.body.appendChild(maskInstance.vm.$el);
+        self.instancesVue[id].mask = maskInstance.vm;
+      }
     }
     return id;
   };
