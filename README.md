@@ -200,3 +200,7 @@ export default {
 
 ### 觉的作者付出的时间和精力有价值，就给作者买杯咖啡吧
  <img src="./wx.jpg" width="300" height="300" />
+
+ ### 更新日志
+
+ <a href="https://github.com/zuoyanart/vue-layer/releases">更新日志</a>
