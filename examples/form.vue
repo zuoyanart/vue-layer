@@ -70,7 +70,7 @@ export default {
     };
   },
   props: {
-    check: {
+    info: {
       type: Object,
       default: () => {
         return {};
@@ -83,6 +83,12 @@ export default {
     fn: {
       type: Function,
       default: function() {}
+    },
+    lydata: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   methods: {
@@ -93,9 +99,9 @@ export default {
       // console.log("$parent");
       // console.log(this.$parent);
       // console.log(this.form);
-      this.$layer.msg("aaaa");
-      this.$layer.alert("asdasd", {
-        scrollbar: false
+      this.$layer.msg("提交成功", () => {
+        this.lydata.info.name = this.form.name;
+        this.$layer.close(this.layerid);
       });
       // this.$parent.$emit('asd', 'kkk');
     },
@@ -105,7 +111,7 @@ export default {
     }
   },
   mounted() {
-    this.form.name = this.check.a;
+    this.form = this.info;
   }
 };
 </script>

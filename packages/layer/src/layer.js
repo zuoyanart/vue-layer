@@ -73,7 +73,6 @@ let Notification = (function (Vue, globalOption = {
         // return;
         // document.body.removeChild(layerMask);
       } else {
-
         let maskInstance = new maskLayer({
           data: options
         });

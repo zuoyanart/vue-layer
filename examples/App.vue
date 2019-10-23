@@ -30,6 +30,7 @@
     <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
     <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
     <h2 class="title">page</h2>
+    {{this.info}}
     <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
     <br />
     <br />
@@ -90,7 +91,17 @@ export default {
           name: "王小虎",
           address: "上海市普陀区金沙江路 1516 弄"
         }
-      ]
+      ],
+      info: {
+        name: "name",
+        region: "region",
+        date1: "date1",
+        date2: "date2",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "asdasdasd"
+      }
     };
   },
   methods: {
@@ -212,7 +223,8 @@ export default {
       this.$layer.iframe({
         content: {
           content: formComp,
-          parent: this
+          parent: this,
+          data: { info: this.info }
         },
         area: ["900px", "600px"],
         title: "这是一个标题这是一个标题这是一个标题这是一个标题",

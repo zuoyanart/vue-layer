@@ -128,7 +128,9 @@ layer.closeAll(type);
   此参数其实就是当前调用layer的vue对象， 即this即可。在editForm中可以直接使用， this.$parent来获取调用layer的vue对象，然后父子传值神马的，就很easy，当然也可以直接使用vuex，就不用this.$parent了
 
   ##### data:
-  此参数可认为是editForm的props，然后你懂得。 注： 该方法会自动添加一个key为layerid的值， 该值为创建层的id， 可以直接使用
+  此参数可认为是editForm的props，传递到iframe后是这个数据的深拷贝，改变数据不会影响来源数据，然后你懂得。
+  > * 该方法会自动添加一个key为layerid的值， 该值为创建层的id， 可以直接使用
+  > * 该方法会自动添加一个key为lydata的值， 该值为data的浅拷贝， 当iframe要更改父窗口传递的数据的时候，可以直接使用lydata来修改，对于表单使用非常方便
 
 结果即为：
 ```js
@@ -138,7 +140,9 @@ methods:{
 		content: {
 		  content: editForm, //传递的组件对象
 		  parent: this,//当前的vue对象
-		  data:{}//props
+		  data:{
+        info:{a:1}
+      }//props
 		},
 		area:['800px','600px'],
 		title:"editForm"
@@ -146,6 +150,50 @@ methods:{
   }
 }
 ```
+iframe组件中
+```js
+export default {
+  data() {
+    return {
+      form: {
+      }
+    };
+  },
+  props: {
+    info: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    },
+    lydata: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$layer.msg("提交成功", () => {
+        this.lydata.info.name = this.form.name;
+        this.$layer.close(this.layerid);
+      });
+    },
+    cancel() {
+      this.$layer.close(this.layerid);
+    }
+  },
+  mounted() {
+    this.form = this.info;
+  }
+};
+```
+
 
 ### 样式调整
 该包的css都为vl-notice开头， 需要重写css样式，覆盖即可
