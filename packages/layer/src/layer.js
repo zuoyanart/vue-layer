@@ -77,7 +77,8 @@ let Notification = (function (Vue, globalOption = {
           data: options
         });
         maskInstance.vm = maskInstance.$mount();
-        document.body.appendChild(maskInstance.vm.$el);
+        // document.body.appendChild(maskInstance.vm.$el);
+        document.body.insertBefore(maskInstance.vm.$el, instance.vm.$el);
         self.instancesVue[id].mask = maskInstance.vm;
       }
     }
@@ -255,6 +256,7 @@ let Notification = (function (Vue, globalOption = {
    */
   self.close = function (id) {
     let oElm = document.getElementById(id);
+    console.log('id', id);
     // let layerMask = document.getElementById(id + '_mask');
     // if (layerMask) {
     //   document.body.removeChild(layerMask);

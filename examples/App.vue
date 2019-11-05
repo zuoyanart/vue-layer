@@ -154,10 +154,10 @@ export default {
       );
     },
     loadingHandle() {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 1; i < 2; i++) {
         console.log("i=", i);
         this.$layer.loading({
-          time: i + 3
+          time: i
         });
       }
     },
