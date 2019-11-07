@@ -256,7 +256,6 @@ let Notification = (function (Vue, globalOption = {
    */
   self.close = function (id) {
     let oElm = document.getElementById(id);
-    console.log('id', id);
     // let layerMask = document.getElementById(id + '_mask');
     // if (layerMask) {
     //   document.body.removeChild(layerMask);
