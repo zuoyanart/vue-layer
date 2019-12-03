@@ -139,7 +139,11 @@ export default {
       return id;
     },
     msgHandle() {
-      this.$layer.msg("弱弱的提示");
+      this.$layer.msg("弱弱的提示", {
+        shade: true,
+        shadeClose: false,
+        time: 5
+      });
     },
     msg1Handle() {
       let id = this.$layer.msg(
@@ -154,12 +158,13 @@ export default {
       );
     },
     loadingHandle() {
-      for (let i = 1; i < 2; i++) {
-        console.log("i=", i);
-        this.$layer.loading({
-          time: i
-        });
-      }
+      // for (let i = 1; i < 2; i++) {
+      // console.log("i=", i);
+      this.$layer.loading({
+        time: 100 * 100,
+        content: 'loadging你好哇订单'
+      });
+      // }
     },
     promptHandle() {
       this.$layer.prompt("你好");

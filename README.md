@@ -77,6 +77,7 @@ this.$layer.alert("找不到对象！");
 ```js
  layer.loadding(option);
   // options ={time:3}，3秒自动关闭
+  //options = {content:'请等待'} //可传入文字
 ```
 
 ```js
@@ -98,7 +99,10 @@ layer.iframe({
     data:{}//props
   },
   area:['800px','600px'],
-  title: 'title'
+  title: 'title'，
+  cancel:()=>{//关闭事件
+     alert('关闭iframe');
+  }
 });
 // data参数可认为是componentName的props，同时 该方法会自动添加一个key为layerid的值， 该值为创建层的id， 可以直接用来关闭该层
 // options参数直接写到json里即可，比如title

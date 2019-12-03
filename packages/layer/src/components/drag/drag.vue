@@ -4,7 +4,6 @@
     :class="cls"
     @mousemove="move"
     @mouseup="moveEnd"
-    @mouseout="moveEnd"
     @focus="resetZIndex"
     tabindex="1"
     :id="options.id"
@@ -62,13 +61,13 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     },
     cls: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           "vl-notify-alert": true
         };

@@ -65,14 +65,14 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() { }
 };
 </script>
 
 <style lang="css">
 .vl-notify-mask {
   background-color: #ccc;
-  opacity: 0.2;
+  opacity: 0.4;
   position: fixed;
   top: 0;
   left: 0;

@@ -7,8 +7,9 @@
 @Last modified time: 2018-03-24 12:33:28
 -->
 <template >
-  <label class="vl-notify vl-notify-loading" :id="options.id">
+  <label :class="setClass" :id="options.id">
     <span></span>
+    <i v-if="options.content!=''" v-html="options.content"></i>
   </label>
 </template>
 
@@ -22,12 +23,24 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
   },
-  computed: {},
+  computed: {
+    setClass() {
+      let cls = {
+        'vl-notify': true,
+        'vl-notify-msg': true,
+        'vl-notify-loading': true
+      };
+      if (this.options.content === '') {
+        delete cls['vl-notify-msg']
+      }
+      return cls;
+    }
+  },
   mounted() {
     setTimeout(() => {
       this.options.layer.close(this.options.id);

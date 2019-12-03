@@ -10,9 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "main": "./lib/vue-layer.umd.min.js",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "element-ui": "^2.12.0",
     "core-js": "^3.3.3",
