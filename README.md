@@ -140,7 +140,7 @@ layer.restore(layerid);
 
   ##### parent:
 
-  此参数其实就是当前调用layer的vue对象， 即this即可。在editForm中可以直接使用， this.$parent来获取调用layer的vue对象，然后父子传值神马的，就很easy，当然也可以直接使用vuex，就不用this.$parent了
+  此参数其实就是当前调用layer的vue对象， 即this即可。在editForm中可以直接使用， this.$parent来获取调用layer的vue对象，然后父子传值神马的，就很easy，当然也可以直接使用vuex，就不用this.$parent了,另外自动注入了原始数据的浅拷贝lydata,也可以直接赋值这个数据来同步父对象的数据
 
   ##### data:
   此参数可认为是editForm的props，传递到iframe后是这个数据的深拷贝，改变数据不会影响来源数据，然后你懂得。
