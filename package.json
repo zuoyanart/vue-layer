@@ -1,6 +1,6 @@
 {
   "name": "vue-layer",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "vue layer component",
   "private": false,
   "scripts": {
@@ -12,19 +12,19 @@
   "main": "./lib/vue-layer.umd.min.js",
   "dependencies": {},
   "devDependencies": {
-    "element-ui": "^2.12.0",
-    "core-js": "^3.3.3",
-    "less": "^3.10.3",
+    "element-ui": "^2.13.0",
+    "core-js": "^3.6.4",
+    "less": "^3.11.1",
     "less-loader": "^5.0.0",
-    "vue": "^2.6.10",
-    "@vue/cli-plugin-babel": "^4.0.4",
-    "@vue/cli-plugin-eslint": "^4.0.4",
-    "@vue/cli-service": "^4.0.4",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.5.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "vue-template-compiler": "^2.6.10",
-    "css-loader": "^3.2.0"
+    "vue": "^2.6.11",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-eslint": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11",
+    "css-loader": "^3.4.2"
   },
   "eslintConfig": {
     "root": true,

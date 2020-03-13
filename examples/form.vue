@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import formComp from "./form1.vue";
 export default {
   data() {
     return {
@@ -82,7 +83,7 @@ export default {
     },
     fn: {
       type: Function,
-      default: function() {}
+      default: function() { }
     },
     lydata: {
       type: Object,
@@ -93,17 +94,30 @@ export default {
   },
   methods: {
     onSubmit() {
-      // console.log("submit!");
-      // alert(JSON.stringify(this.form));
-      // console.log(this.parent);
-      // console.log("$parent");
-      // console.log(this.$parent);
-      // console.log(this.form);
-      this.$layer.msg("提交成功", () => {
-        this.lydata.info.name = this.form.name;
-        this.$layer.close(this.layerid);
+      const id = this.$layer.iframe({
+        content: {
+          content: formComp,
+          parent: this,
+          data: { info: this.info }
+        },
+        area: ["500px", "300px"],
+        title: "这是一个标题这是一个标题这是一个标题这是一个标题",
+        maxmin: true,
+        shade: true,
+        shadeClose: false,
+        scrollbar: false,
+        resize: true,
+        cancel: () => {
+          alert(2110);
+        }
       });
-      // this.$parent.$emit('asd', 'kkk');
+      this.$layer.full(id);
+
+      // this.$layer.msg("提交成功", () => {
+      //   this.lydata.info.name = this.form.name;
+      //   this.$layer.close(this.layerid);
+      // });
+
     },
     quxiao() {
       this.fn();

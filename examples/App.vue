@@ -158,13 +158,13 @@ export default {
       );
     },
     loadingHandle() {
-      // for (let i = 1; i < 2; i++) {
-      // console.log("i=", i);
-      this.$layer.loading({
-        time: 100 * 100,
-        content: 'loadging你好哇订单'
-      });
-      // }
+      for (let i = 1; i < 20; i++) {
+        console.log("i=", i);
+        this.$layer.loading({
+          time: 2 * i,
+          content: ''
+        });
+      }
     },
     promptHandle() {
       this.$layer.prompt("你好");
@@ -225,7 +225,7 @@ export default {
       );
     },
     pageHandle() {
-      this.$layer.iframe({
+      const id = this.$layer.iframe({
         content: {
           content: formComp,
           parent: this,
@@ -242,6 +242,8 @@ export default {
           alert(2110);
         }
       });
+      console.log(id);
+      // this.$layer.full(id);
     }
   }
 };

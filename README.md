@@ -7,7 +7,7 @@ install
 ```shell
 npm install vue-layer
 ```
-
+      // "eslint:recommended"
 ## Quick Start
 
 在程序入口添加
@@ -108,14 +108,25 @@ layer.iframe({
 // options参数直接写到json里即可，比如title
 ```
 ```js
-layer.open(options);
-```
-```js
 layer.close(id);
 ```
 ```js
 layer.closeAll(type);
 ```
+
+```js
+//弹窗最大化
+layer.full(layerid);
+```
+```js
+//弹窗最小化
+layer.min(layerid);
+```
+```js
+//还原弹窗
+layer.restore(layerid);
+```
+
 
 ### 关于this.$layer.iframe
  其实使用iframe层，除了操作方便外，主要的目的是隔离代码， 降低代码复杂度。而在vue中，组件就是功能块的基本单位了，所以vue-layer中并不存在iframe的DOM元素，这里用的都是组件。 这里的content有三个参数：
