@@ -86,6 +86,15 @@ this.$layer.alert("找不到对象！");
  // 默认msg的关闭时间为1.5秒
  // content 可以为html
 ```
+
+
+```js
+ layer.prompt(options, yes);
+ //特殊参数: value 要回显的值
+ //formType: 1text,2password,3textarea
+```
+
+
 ```js
 layer.tips(content, follow, options);
 //content 可以为html
@@ -126,6 +135,8 @@ layer.min(layerid);
 //还原弹窗
 layer.restore(layerid);
 ```
+
+
 
 
 ### 关于this.$layer.iframe

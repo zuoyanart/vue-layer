@@ -15,7 +15,7 @@ let Notification = (function(Vue, globalOption = {
   let maskLayer = Vue.extend(maskVue);
   let self = {};
   const defOptions = {
-    type: 0, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    type: 0, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）,5msg,6prompt
     title: '信息',
     content: '',
     area: 'auto',
@@ -233,20 +233,26 @@ let Notification = (function(Vue, globalOption = {
   /**
    * 获取信息框
    */
-  self.prompt = function(title = '请填写', yes = '', cancel = '', options = {
+  self.prompt = function(options = {
     formType: 1,
     value: ''
-  }) {
+  }, yes = '', cancel = '', ) {
     switch (typeof (cancel)) {
       case 'object':
         options = cancel;
         break;
     }
-
     options.content = '';
     options.yes = yes;
+    options.cancel = cancel;
     options.type = 6;
-    options.title = title;
+    //如果是textarea
+    if (options.formType == 3) {
+      if (!options.area) {
+        options.area = ['500px', '500px'];
+      }
+    }
+    // options.title = title || '';
     return self.open(options);
   }
   /**

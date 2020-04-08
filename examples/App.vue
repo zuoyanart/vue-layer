@@ -167,7 +167,15 @@ export default {
       }
     },
     promptHandle() {
-      this.$layer.prompt("你好");
+      this.$layer.prompt({
+        title: '你好',
+        area: ['500px', '300px'],
+        value: '2asdasd1',
+        formType: 3
+      }, (value, layerid) => {
+        this.$layer.alert(value);
+        this.$layer.close(layerid);
+      });
     },
     tipsHandle() {
       this.$layer.tips("在很久很久以前", "#tips", {

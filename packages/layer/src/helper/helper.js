@@ -24,9 +24,13 @@ export default class helper {
    * @param  {[type]} event [description]
    * @return {[type]}       [description]
    */
-  static btnyes(event, options) {
+  static btnyes(event, options, formValue) {
     if (typeof (options.yes) == "function") {
-      options.yes(options.id);
+      if (options.type === 6) {
+        options.yes(formValue, options.id);
+      } else {
+        options.yes(options.id);
+      }
     } else {
       options.layer.close(options.id);
     }
