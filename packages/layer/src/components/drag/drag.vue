@@ -205,26 +205,29 @@ export default {
       if (this.ismove) {
         let o = document.getElementById(this.options.id + "");
         let top = this.options.offset[1] + (event.clientY - this.moveTop);
-        let docOffsetHeight = o.offsetHeight / 2;
         let left = this.options.offset[0] + (event.clientX - this.moveLeft);
-        let docOffsetWidth = o.offsetWidth / 2;
-        if (top <= docOffsetHeight) {
-          //顶部边界
-          top = docOffsetHeight;
-        }
-        if (left <= docOffsetWidth) {
-          //左侧边界
-          left = docOffsetWidth;
-        }
-        let docHeight = document.documentElement.clientHeight;
-        let docWidth = document.documentElement.clientWidth;
-        if (top >= docHeight - docOffsetHeight) {
-          //底部边界
-          top = docHeight - docOffsetHeight;
-        }
-        if (left >= docWidth - docOffsetWidth) {
-          //右部边界
-          left = docWidth - docOffsetWidth;
+        // 增加moveOut参数 为true则可移到屏幕外，默认不可移到屏幕外
+        if (!this.options.moveOut) {
+          let docOffsetHeight = o.offsetHeight / 2;
+          let docOffsetWidth = o.offsetWidth / 2;
+          if (top <= docOffsetHeight) {
+            //顶部边界
+            top = docOffsetHeight;
+          }
+          if (left <= docOffsetWidth) {
+            //左侧边界
+            left = docOffsetWidth;
+          }
+          let docHeight = document.documentElement.clientHeight;
+          let docWidth = document.documentElement.clientWidth;
+          if (top >= docHeight - docOffsetHeight) {
+            //底部边界
+            top = docHeight - docOffsetHeight;
+          }
+          if (left >= docWidth - docOffsetWidth) {
+            //右部边界
+            left = docWidth - docOffsetWidth;
+          }
         }
         o.style.left = left + "px";
         o.style.top = top + "px";
