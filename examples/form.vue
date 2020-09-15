@@ -83,9 +83,15 @@ export default {
     },
     fn: {
       type: Function,
-      default: function() { }
+      default: function () { }
     },
     lydata: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    },
+    lyoption: {
       type: Object,
       default: () => {
         return {};
@@ -115,7 +121,9 @@ export default {
 
       this.$layer.msg("提交成功", () => {
         this.lydata.info.name = this.form.name;
-        this.$layer.close(this.layerid);
+        // this.$layer.close(this.layerid);
+        this.lyoption.cancel();
+        this.fn();
       });
 
     },

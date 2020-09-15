@@ -237,7 +237,12 @@ export default {
         content: {
           content: formComp,
           parent: this,
-          data: { info: this.info }
+          data: {
+            info: this.info,
+            fn: () => {
+              alert(1);
+            }
+          }
         },
         area: ["900px", "600px"],
         title: "这是一个标题这是一个标题这是一个标题这是一个标题",
@@ -246,6 +251,7 @@ export default {
         shadeClose: false,
         scrollbar: false,
         resize: true,
+        btn: ['a', 'b'],
         cancel: () => {
           alert(2110);
         }

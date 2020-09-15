@@ -28,7 +28,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
@@ -55,6 +55,7 @@ export default {
       let propsData = helper.deepClone(this.options.content.data) || {};
       propsData["layerid"] = this.options.id;
       propsData["lydata"] = this.options.content.data;
+      propsData["lyoption"] = this.options;
       let instance = new this.options.content.content({
         //具体参数信息，请参考vue源码
         parent: this.options.content.parent,
