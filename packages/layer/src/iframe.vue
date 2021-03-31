@@ -39,8 +39,8 @@ export default {
   computed: {
     contentStyle() {
       return {
-        height: parseInt(this.options.area[1]) - 50 + "px",
-        minHeight: "inherit",
+        height: "calc(100% - 50px)",//parseInt(this.options.area[1]) - 50 + "px",
+        minHeight: "20px",
         overflow: "auto"
       };
     }

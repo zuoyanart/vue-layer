@@ -4,6 +4,7 @@
   "description": "vue layer component",
   "private": false,
   "scripts": {
+    "start": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lib": "vue-cli-service build --target lib --name vue-layer --dest lib packages/layer/index.js",
@@ -12,19 +13,19 @@
   "main": "./lib/vue-layer.umd.min.js",
   "dependencies": {},
   "devDependencies": {
-    "element-ui": "^2.13.2",
-    "core-js": "^3.6.5",
-    "less": "^3.12.2",
-    "less-loader": "^7.0.1",
-    "vue": "^2.6.12",
-    "@vue/cli-plugin-babel": "^4.5.6",
-    "@vue/cli-plugin-eslint": "^4.5.6",
-    "@vue/cli-service": "^4.5.6",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-plugin-eslint": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.12",
-    "css-loader": "^4.3.0"
+    "core-js": "^3.9.1",
+    "css-loader": "^5.2.0",
+    "element-ui": "^2.15.1",
+    "eslint": "^7.23.0",
+    "eslint-plugin-vue": "^7.8.0",
+    "less": "^4.1.1",
+    "less-loader": "^7.3.0",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
@@ -35,7 +36,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "vue/no-mutating-props": 0
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

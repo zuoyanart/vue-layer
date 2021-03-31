@@ -8,6 +8,7 @@
     tabindex="1"
     :id="options.id"
     :style="getBaseStyle"
+    :minindex="minindex"
   >
     <h2 class="vl-notice-title" @mousedown="moveStart">
       <span v-html="options.title" class="lv-title"></span>
@@ -21,7 +22,7 @@
             <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
           </template>
           <template v-else-if="maxMiniState === 2">
-            <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
+            <i class="vlayer vlicon-huanyuan lv-icon-min" @click="maxmini"></i>
           </template>
         </span>
       </template>
@@ -47,6 +48,7 @@ export default {
       id: "vlip" + new Date().getTime(),
       zindex: 1,
       addStyle: {},
+      minindex: -1,
       maxMiniState: 0, //0normal,1mini,2max
       resize: {
         isResize: false,
@@ -109,7 +111,8 @@ export default {
         margin: op.offset[2],
         zIndex: this.zindex,
         width: op.area[0],
-        height: op.area[1]
+        height: op.area[1],
+        overflow: 'hidden'
       };
       let a = helper.deepClone(styleBase);
       return this.mergeJson(a, this.addStyle);
@@ -160,10 +163,27 @@ export default {
     },
     mini() {
       //最小化窗口
+      let domMinIndex = parseInt(document.getElementById(this.options.id).getAttribute("minindex"));
+      if (domMinIndex < 0) {
+        const iframeMinList = this.options.layer.iframeMinList;
+        for (let i = 0, len = iframeMinList.length; i < len; i++) {
+          if (iframeMinList[i] === 0) {
+            this.minindex = i;
+          }
+        }
+        if (this.minindex === -1) {
+          iframeMinList.push(1);
+          this.minindex = iframeMinList.length - 1;
+          domMinIndex = iframeMinList.length - 1;
+        }
+      }
+
+      console.log('mini-iframeMinList', domMinIndex, document.getElementById(this.options.id).getAttribute("minindex"));
+
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
-        left: "130px",
+        left: 250 * domMinIndex + 135 + "px",
         width: "100px",
         height: "42px",
         minHeight: "42px",
@@ -185,8 +205,9 @@ export default {
         minHeight: "42px"
       };
       this.maxMiniState = 2;
+      console.log('max-iframeMinList', this.options.layer.iframeMinList);
     },
-    maxmini() {
+    maxmini() {//还原
       document.getElementById(this.options.id).removeAttribute("style");
       this.addStyle = {
         left: "tpx",
@@ -194,6 +215,7 @@ export default {
         margin: "t"
       };
       this.maxMiniState = 0;
+      console.log('iframeMinList', this.options.layer.iframeMinList);
     },
     moveStart(event) {
       helper.moveStart(event, this.options);

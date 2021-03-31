@@ -26,13 +26,9 @@
     <br />
     <h2 class="title">tips</h2>
     <el-button type="primary" id="tips" @click="tipsHandle">上</el-button>
-    <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle"
-      >右</el-button
-    >
+    <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle">右</el-button>
     <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
-    <el-button type="primary" id="tips3" @click="tips3Handle"
-      >左-自定义样式</el-button
-    >
+    <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
     <h2 class="title">page</h2>
     {{ this.info }}
     <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
@@ -59,18 +55,9 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="submitHandle(scope.$index, scope.row)"
-            >编辑</el-button
-          >
-          <el-button
-            size="mini"
-            type="danger"
-            @click="confirmHandle(scope.$index, scope.row)"
-            >删除</el-button
-          >
-          <el-button type="primary" id="tipst" @click="tipstHandle" size="mini"
-            >上</el-button
-          >
+          <el-button size="mini" @click="submitHandle(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="confirmHandle(scope.$index, scope.row)">删除</el-button>
+          <el-button type="primary" id="tipst" @click="tipstHandle" size="mini">上</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -257,10 +244,10 @@ export default {
             }
           }
         },
-        area: ["900px", "600px"],
+        area: ["900px", "100px"],
         title: "这是一个标题这是一个标题这是一个标题这是一个标题",
         maxmin: true,
-        shade: true,
+        shade: false,
         shadeClose: false,
         scrollbar: false,
         resize: true,
@@ -270,7 +257,7 @@ export default {
         }
       });
       console.log(id);
-      this.$layer.full(id);
+      // this.$layer.full(id);
     }
   }
 };
