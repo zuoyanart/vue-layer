@@ -48,7 +48,7 @@ export default {
       id: "vlip" + new Date().getTime(),
       zindex: 1,
       addStyle: {},
-      minindex: -1,
+      minindex: -2,
       maxMiniState: 0, //0normal,1mini,2max
       resize: {
         isResize: false,
@@ -167,19 +167,21 @@ export default {
       if (domMinIndex < 0) {
         const iframeMinList = this.options.layer.iframeMinList;
         for (let i = 0, len = iframeMinList.length; i < len; i++) {
-          if (iframeMinList[i] === 0) {
+          if (iframeMinList[i] === -1) {
             this.minindex = i;
+            domMinIndex = i;
+            iframeMinList[i] = 1;
+            break;
           }
         }
-        if (this.minindex === -1) {
+        console.log('mindex+++', this.minindex);
+        if (this.minindex === -2) {
           iframeMinList.push(1);
           this.minindex = iframeMinList.length - 1;
           domMinIndex = iframeMinList.length - 1;
         }
       }
-
-      console.log('mini-iframeMinList', domMinIndex, document.getElementById(this.options.id).getAttribute("minindex"));
-
+      console.log('mindex', domMinIndex, this.options.layer.iframeMinList);
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
