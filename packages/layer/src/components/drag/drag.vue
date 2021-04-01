@@ -110,8 +110,8 @@ export default {
         top: op.offset[1] + "px",
         margin: op.offset[2],
         zIndex: this.zindex,
-        width: op.area[0],
-        height: op.area[1],
+        width: helper.evenNumber(op.area[0]),
+        height: helper.evenNumber(op.area[1]),
         overflow: 'hidden'
       };
       let a = helper.deepClone(styleBase);
