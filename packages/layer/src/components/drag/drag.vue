@@ -174,14 +174,12 @@ export default {
             break;
           }
         }
-        console.log('mindex+++', this.minindex);
         if (this.minindex === -2) {
           iframeMinList.push(1);
           this.minindex = iframeMinList.length - 1;
           domMinIndex = iframeMinList.length - 1;
         }
       }
-      console.log('mindex', domMinIndex, this.options.layer.iframeMinList);
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
@@ -207,7 +205,6 @@ export default {
         minHeight: "42px"
       };
       this.maxMiniState = 2;
-      console.log('max-iframeMinList', this.options.layer.iframeMinList);
     },
     maxmini() {//还原
       document.getElementById(this.options.id).removeAttribute("style");
@@ -217,7 +214,6 @@ export default {
         margin: "t"
       };
       this.maxMiniState = 0;
-      console.log('iframeMinList', this.options.layer.iframeMinList);
     },
     moveStart(event) {
       helper.moveStart(event, this.options);

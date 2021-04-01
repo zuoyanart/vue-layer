@@ -268,17 +268,11 @@ let Notification = (function (Vue, globalOption = {
       delete self.instances[id];
       self.instancesVue[id].main.$destroy();
       if (self.instancesVue[id].iframe != '') {
-        // console.log('iframe', self.instances);
-        // console.log('iframe', self.instancesVue[id]);
-        console.log('iframe', self.instancesVue[id].main.$el.getAttribute('minindex'));
         const minindex = parseInt(self.instancesVue[id].main.$el.getAttribute('minindex') || -2);
         if (minindex > -1) {
           self.iframeMinList[minindex] = -1;
-          console.log('iframe', self.iframeMinList);
         }
         self.instancesVue[id].iframe.$destroy();
-      } else {
-        console.log('no-iframe');
       }
       //取消隐藏滚动条
       if (!self.instancesVue[id].main.scrollbar) {
