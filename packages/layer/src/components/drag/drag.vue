@@ -253,6 +253,7 @@ export default {
     },
     moveEnd() {
       this.ismove = false;
+      this.resize.isResize = false;
     },
     resizeHand(event) {
       //拉伸操作
@@ -271,14 +272,47 @@ export default {
         let o = document.getElementById(this.options.id + "");
         let top = event.clientY;
         let left = event.clientX;
+
         let oWidth = this.resize.oWidth + (left - this.resize.moveLeft) * 2;
         let oHeight = this.resize.oHeight + (top - this.resize.moveTop) * 2;
+
+        // console.log('top', o.offsetHeight / 2, o.getBoundingClientRect().top);
 
         if (oWidth < 200 || oHeight < 200) {
           return;
         }
+        //控制边界
+        const clientRect = o.getBoundingClientRect();
+
+        //右边界
+        let docWidth = document.documentElement.clientWidth;
+        if (clientRect.right > docWidth) {
+          oWidth = docWidth - 20;
+        }
+        //底边界
+        // let docHeight = document.documentElement.clientHeight;
+        // console.log('clientRect', clientRect, docHeight);
+        // if (clientRect.right > docHeight) {
+        //   oHeight = docHeight - 20;
+        // }
         o.style.width = oWidth + "px";
         o.style.height = oHeight + "px";
+
+        //上边界
+        if (clientRect.top < 0) {
+          o.style.top = (o.getBoundingClientRect().height / 2) + 'px';
+        }
+        //左边界
+        if (clientRect.left < 0) {
+          o.style.left = (o.getBoundingClientRect().width / 2) + 'px';
+        }
+        //下边界
+        if (clientRect.left < 0) {
+          o.style.left = (o.getBoundingClientRect().width / 2) + 'px';
+        }
+
+
+
       }
     },
     resizeHandMoveEnd() {
@@ -286,6 +320,7 @@ export default {
         this.resize.isResize = false;
         document.body.removeEventListener("mousemove", e => {
           this.resizeHandMove(e);
+
         });
       }, 50);
     }

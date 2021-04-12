@@ -40,7 +40,7 @@ export default {
     contentStyle() {
       return {
         height: "calc(100% - 50px)",//parseInt(this.options.area[1]) - 50 + "px",
-        minHeight: "20px",
+        minHeight: "0px",
         overflow: "auto"
       };
     }
