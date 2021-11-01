@@ -199,6 +199,7 @@ export default {
       }
       this.addStyle = {
         overflow: "hidden",
+        top: "50%",
         left: "50%",
         width: "100%",
         height: height + "px",
