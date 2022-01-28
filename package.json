@@ -1,6 +1,6 @@
 {
-  "name": "vue-layer",
-  "version": "1.2.5",
+  "name": "qh-vue-layer",
+  "version": "1.2.8-alpha.0",
   "description": "vue layer component",
   "private": false,
   "scripts": {
