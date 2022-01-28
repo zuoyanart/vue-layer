@@ -1,7 +1,7 @@
 <template>
   <div
     class="vl-notify vl-notify-main vl-notify-alert"
-    :class="cls"
+    :class="[cls, options.className]"
     @mousemove="move"
     @mouseup="moveEnd"
     @focus="resetZIndex"
