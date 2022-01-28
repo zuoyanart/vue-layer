@@ -252,7 +252,6 @@ export default {
         scrollbar: false,
         resize: true,
         btn: ['a', 'b'],
-        className: 'new-class',
         cancel: () => {
           alert(2110);
         }
