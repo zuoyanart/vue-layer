@@ -50,7 +50,8 @@ this.$layer.alert("找不到对象！");
   shadeClose: true,//点击遮罩是否关闭
   maxmin: true,//开启最大化最小化
   scrollbar: true, //是否允许浏览器出现滚动条:默认是允许
-  resize: false //是否允许拉伸，默认是不允许
+  resize: false, //是否允许拉伸，默认是不允许
+  className: '' // 调用iframe弹窗，添加自定义class 配合type = 2时有效
 }
 ```
 ## Method
