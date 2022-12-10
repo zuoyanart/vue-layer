@@ -37,8 +37,8 @@
   z-index: 1000;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  transform: perspective(1px) translate(-50%, -50%);
+  -ms-transform: perspective(1px) translate(-50%, -50%);
   box-sizing: border-box;
 
   &.vl-notify-msg-p {
@@ -46,8 +46,8 @@
     height: 0;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    transform: perspective(1px) translate(-50%, -50%);
+    -ms-transform: perspective(1px) translate(-50%, -50%);
     background-color: rgba(0, 0, 0, .6);
   }
 
@@ -108,6 +108,8 @@
       display: flex;
       position: relative;
       z-index: 100000;
+      word-break: keep-all;
+      overflow: hidden;
 
       .lv-title {
         text-overflow: ellipsis;

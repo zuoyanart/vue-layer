@@ -28,7 +28,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
@@ -39,8 +39,8 @@ export default {
   computed: {
     contentStyle() {
       return {
-        height: parseInt(this.options.area[1]) - 50 + "px",
-        minHeight: "inherit",
+        height: "calc(100% - 50px)",//parseInt(this.options.area[1]) - 50 + "px",
+        minHeight: "0px",
         overflow: "auto"
       };
     }
@@ -55,6 +55,7 @@ export default {
       let propsData = helper.deepClone(this.options.content.data) || {};
       propsData["layerid"] = this.options.id;
       propsData["lydata"] = this.options.content.data;
+      propsData["lyoption"] = this.options;
       let instance = new this.options.content.content({
         //具体参数信息，请参考vue源码
         parent: this.options.content.parent,

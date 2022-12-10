@@ -201,6 +201,12 @@ export default {
       default: () => {
         return {};
       }
+    },
+    lyoption: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   methods: {
@@ -215,7 +221,7 @@ export default {
     }
   },
   mounted() {
-    this.form = this.info;
+    this.form = this.info
   }
 };
 ```
@@ -225,7 +231,14 @@ export default {
 该包的css都为vl-notice开头， 需要重写css样式，覆盖即可
 
 ### 觉的作者付出的时间和精力有价值，就给作者买杯咖啡吧
- <img src="./wx.jpg" width="300" height="300" />
+ <img src="http://static.groot.zuoyanit.com/wx.jpg" width="350" height="350" />
+
+ ### 入群交流
+
+ <img src="http://static.groot.zuoyanit.com/wxp.jpg" width="350" height="350" />
+
+
+
 
  ### 更新日志
 

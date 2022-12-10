@@ -8,6 +8,7 @@
     tabindex="1"
     :id="options.id"
     :style="getBaseStyle"
+    :minindex="minindex"
   >
     <h2 class="vl-notice-title" @mousedown="moveStart">
       <span v-html="options.title" class="lv-title"></span>
@@ -21,7 +22,7 @@
             <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
           </template>
           <template v-else-if="maxMiniState === 2">
-            <i class="vlayer vlicon-huanyuan lv-icon-max" @click="maxmini"></i>
+            <i class="vlayer vlicon-huanyuan lv-icon-min" @click="maxmini"></i>
           </template>
         </span>
       </template>
@@ -47,6 +48,7 @@ export default {
       id: "vlip" + new Date().getTime(),
       zindex: 1,
       addStyle: {},
+      minindex: -2,
       maxMiniState: 0, //0normal,1mini,2max
       resize: {
         isResize: false,
@@ -108,8 +110,9 @@ export default {
         top: op.offset[1] + "px",
         margin: op.offset[2],
         zIndex: this.zindex,
-        width: op.area[0],
-        height: op.area[1]
+        width: helper.evenNumber(op.area[0]),
+        height: helper.evenNumber(op.area[1]),
+        overflow: 'hidden'
       };
       let a = helper.deepClone(styleBase);
       return this.mergeJson(a, this.addStyle);
@@ -160,10 +163,27 @@ export default {
     },
     mini() {
       //最小化窗口
+      let domMinIndex = parseInt(document.getElementById(this.options.id).getAttribute("minindex"));
+      if (domMinIndex < 0) {
+        const iframeMinList = this.options.layer.iframeMinList;
+        for (let i = 0, len = iframeMinList.length; i < len; i++) {
+          if (iframeMinList[i] === -1) {
+            this.minindex = i;
+            domMinIndex = i;
+            iframeMinList[i] = 1;
+            break;
+          }
+        }
+        if (this.minindex === -2) {
+          iframeMinList.push(1);
+          this.minindex = iframeMinList.length - 1;
+          domMinIndex = iframeMinList.length - 1;
+        }
+      }
       this.addStyle = {
         overflow: "hidden",
         bottom: 0,
-        left: "130px",
+        left: 250 * domMinIndex + 135 + "px",
         width: "100px",
         height: "42px",
         minHeight: "42px",
@@ -186,7 +206,7 @@ export default {
       };
       this.maxMiniState = 2;
     },
-    maxmini() {
+    maxmini() {//还原
       document.getElementById(this.options.id).removeAttribute("style");
       this.addStyle = {
         left: "tpx",
@@ -236,6 +256,7 @@ export default {
     },
     moveEnd() {
       this.ismove = false;
+      this.resize.isResize = false;
     },
     resizeHand(event) {
       //拉伸操作
@@ -254,14 +275,47 @@ export default {
         let o = document.getElementById(this.options.id + "");
         let top = event.clientY;
         let left = event.clientX;
+
         let oWidth = this.resize.oWidth + (left - this.resize.moveLeft) * 2;
         let oHeight = this.resize.oHeight + (top - this.resize.moveTop) * 2;
+
+        // console.log('top', o.offsetHeight / 2, o.getBoundingClientRect().top);
 
         if (oWidth < 200 || oHeight < 200) {
           return;
         }
+        //控制边界
+        const clientRect = o.getBoundingClientRect();
+
+        //右边界
+        let docWidth = document.documentElement.clientWidth;
+        if (clientRect.right > docWidth) {
+          oWidth = docWidth - 20;
+        }
+        //底边界
+        // let docHeight = document.documentElement.clientHeight;
+        // console.log('clientRect', clientRect, docHeight);
+        // if (clientRect.right > docHeight) {
+        //   oHeight = docHeight - 20;
+        // }
         o.style.width = oWidth + "px";
         o.style.height = oHeight + "px";
+
+        //上边界
+        if (clientRect.top < 0) {
+          o.style.top = (o.getBoundingClientRect().height / 2) + 'px';
+        }
+        //左边界
+        if (clientRect.left < 0) {
+          o.style.left = (o.getBoundingClientRect().width / 2) + 'px';
+        }
+        //下边界
+        if (clientRect.left < 0) {
+          o.style.left = (o.getBoundingClientRect().width / 2) + 'px';
+        }
+
+
+
       }
     },
     resizeHandMoveEnd() {
@@ -269,6 +323,7 @@ export default {
         this.resize.isResize = false;
         document.body.removeEventListener("mousemove", e => {
           this.resizeHandMove(e);
+
         });
       }, 50);
     }

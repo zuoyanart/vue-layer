@@ -30,7 +30,7 @@
     <el-button type="primary" id="tips2" @click="tips2Handle">下</el-button>
     <el-button type="primary" id="tips3" @click="tips3Handle">左-自定义样式</el-button>
     <h2 class="title">page</h2>
-    {{this.info}}
+    {{ this.info }}
     <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
     <br />
     <br />
@@ -237,15 +237,21 @@ export default {
         content: {
           content: formComp,
           parent: this,
-          data: { info: this.info }
+          data: {
+            info: this.info,
+            fn: () => {
+              alert(1);
+            }
+          }
         },
-        area: ["900px", "600px"],
+        area: ["901px", "501px"],
         title: "这是一个标题这是一个标题这是一个标题这是一个标题",
         maxmin: true,
-        shade: true,
+        shade: false,
         shadeClose: false,
         scrollbar: false,
         resize: true,
+        btn: ['a', 'b'],
         cancel: () => {
           alert(2110);
         }

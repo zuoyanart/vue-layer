@@ -139,6 +139,25 @@ export default class helper {
     }
     return _deepCopy(target);
   }
+  /**
+   *  取偶数
+   * @param {*} str 
+   */
+  static evenNumber(str = '') {
+    const result = str.match(/\d+/g);
+    if (result) {
+      const n = parseInt(result[0]);
+      if (n % 2 === 0) {
+        return str;
+      } else {
+        str = str.replace(n, n + 1);
+        return str;
+      }
+    } else {
+      return str;
+    }
+
+  }
 
 
 }

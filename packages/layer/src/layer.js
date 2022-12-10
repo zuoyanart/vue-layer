@@ -8,7 +8,7 @@
 
 import layerVue from './layer.vue';
 import maskVue from './mask.vue';
-let Notification = (function(Vue, globalOption = {
+let Notification = (function (Vue, globalOption = {
   msgtime: 1.5, //msg消失时间
 }) {
   let NotificationConstructor = Vue.extend(layerVue);
@@ -35,6 +35,7 @@ let Notification = (function(Vue, globalOption = {
   };
   self.instances = {};
   self.instancesVue = [];
+  self.iframeMinList = [];
   let seed = 0;
 
 
@@ -44,7 +45,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.open = function(options) {
+  self.open = function (options) {
     options = mergeJson(options, defOptions);
     let id = `notification_${new Date().getTime()}_${seed++}`;
     options.id = id;
@@ -91,7 +92,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} yes     [description]
    * @return {[type]}         [description]
    */
-  self.alert = function(content, options, yes) {
+  self.alert = function (content, options, yes) {
     switch (typeof (options)) {
       case 'function':
         yes = options;
@@ -116,7 +117,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} yes     [description]
    * @return {[type]}         [description]
    */
-  self.confirm = function(content, options, yes, cancel) {
+  self.confirm = function (content, options, yes, cancel) {
     switch (typeof (options)) {
       case 'function':
         cancel = yes;
@@ -145,7 +146,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} end     [description]
    * @return {[type]}         [description]
    */
-  self.msg = function(content, options, end) {
+  self.msg = function (content, options, end) {
     switch (typeof (options)) {
       case 'function':
         end = options;
@@ -169,7 +170,7 @@ let Notification = (function(Vue, globalOption = {
     return self.open(options);
   }
   //loading
-  self.loading = function(icon, options) {
+  self.loading = function (icon, options) {
     if (typeof (icon) === 'object') {
       options = icon;
       icon = 0;
@@ -179,7 +180,7 @@ let Notification = (function(Vue, globalOption = {
     if (options.icon < 0 || options.icon > 2) {
       options.icon = 0;
     }
-    if (!options.time) {//单位秒
+    if (!options.time) { //单位秒
       options.time = 100;
     }
     options.type = 3;
@@ -199,7 +200,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.tips = function(content, follow, options) {
+  self.tips = function (content, follow, options) {
     options = options || {};
     options.type = 4;
     options.content = content || '';
@@ -221,7 +222,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
-  self.iframe = function(opt) {
+  self.iframe = function (opt) {
     let option = {
       type: 2,
       content: opt.content,
@@ -233,7 +234,7 @@ let Notification = (function(Vue, globalOption = {
   /**
    * 获取信息框
    */
-  self.prompt = function(options = {
+  self.prompt = function (options = {
     formType: 1,
     value: ''
   }, yes = '', cancel = '', ) {
@@ -260,13 +261,17 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} id [description]
    * @return {[type]}    [description]
    */
-  self.close = function(id) {
+  self.close = function (id) {
     let oElm = document.getElementById(id);
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];
       self.instancesVue[id].main.$destroy();
       if (self.instancesVue[id].iframe != '') {
+        const minindex = parseInt(self.instancesVue[id].main.$el.getAttribute('minindex') || -2);
+        if (minindex > -1) {
+          self.iframeMinList[minindex] = -1;
+        }
         self.instancesVue[id].iframe.$destroy();
       }
       //取消隐藏滚动条
@@ -294,7 +299,7 @@ let Notification = (function(Vue, globalOption = {
       }
       delete self.instancesVue[id];
     } else {
-      setTimeout(function() {
+      setTimeout(function () {
         let oElm = document.getElementById(id);
         if (oElm) {
           document.body.removeChild(oElm);
@@ -312,7 +317,7 @@ let Notification = (function(Vue, globalOption = {
    * @param  {[type]} id [description]
    * @return {[type]}    [description]
    */
-  self.closeAll = function(type = -1) {
+  self.closeAll = function (type = -1) {
     let types = {
       'alert': 0,
       'page': 1,
@@ -337,19 +342,19 @@ let Notification = (function(Vue, globalOption = {
   /**
    * 手动最大化
    */
-  self.full = function(id = '') {
+  self.full = function (id = '') {
     document.querySelector('#' + id + ' .lv-icon-max').click();
   }
   /**
    * 手动最小化
    */
-  self.min = function(id = '') {
+  self.min = function (id = '') {
     document.querySelector('#' + id + ' .lv-icon-mini').click();
   }
   /**
- * 手动最小化
- */
-  self.restore = function(id = '') {
+   * 手动最小化
+   */
+  self.restore = function (id = '') {
     document.querySelector('#' + id + ' .lv-icon-huanyuan').click();
   }
 

@@ -19,12 +19,14 @@
 </el-form-item>
 <el-form-item>
   <el-button type="primary" @click="onSubmit">立即创建</el-button>
+  <el-button type="primary" @click="pageHandle">新弹窗</el-button>
   <el-button @click="quxiao">取消</el-button>
 </el-form-item>
 </el-form>
 </template>
 
 <script>
+import formComp from "./form.vue";
 export default {
   data() {
     return {
@@ -53,7 +55,7 @@ export default {
     },
     fn: {
       type: Function,
-      default: function() { }
+      default: function () { }
     },
     lydata: {
       type: Object,
@@ -63,6 +65,33 @@ export default {
     }
   },
   methods: {
+    pageHandle() {
+      const id = this.$layer.iframe({
+        content: {
+          content: formComp,
+          parent: this,
+          data: {
+            info: this.info,
+            fn: () => {
+              alert(1);
+            }
+          }
+        },
+        area: ["901px", "101px"],
+        title: "这是一个标题这是一个标题这是一个标题这是一个标题",
+        maxmin: true,
+        shade: false,
+        shadeClose: false,
+        scrollbar: false,
+        resize: true,
+        btn: ['a', 'b'],
+        cancel: () => {
+          alert(2110);
+        }
+      });
+      console.log(id);
+      // this.$layer.full(id);
+    },
     onSubmit() {
       // console.log("submit!");
       // alert(JSON.stringify(this.form));
